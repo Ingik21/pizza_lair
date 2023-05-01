@@ -13,6 +13,7 @@ class MenuPizzas(models.Model):
     toppings = models.ForeignKey(PizzaToppings, on_delete=models.CASCADE)
     base_price = models.FloatField()
     on_sale = models.BooleanField()
+    
 
 
 class PizzaImage(models.Model):

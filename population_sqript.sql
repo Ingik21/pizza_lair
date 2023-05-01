@@ -1,0 +1,1 @@
+INSERT INTO PizzaToppings_PizzaToppings (P) VALUES (1, 'Pepperoni');
