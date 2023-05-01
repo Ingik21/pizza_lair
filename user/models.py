@@ -9,4 +9,4 @@ class User(models.Model):
     image = models.CharField(max_length=9999, blank=True)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=32)
-    favorite_pizza = models.ForeignKey(MenuPizzas, blank=True)
+    favorite_pizza = models.ForeignKey(MenuPizzas, on_delete=models.RESTRICT)
