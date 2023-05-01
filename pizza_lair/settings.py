@@ -78,9 +78,14 @@ WSGI_APPLICATION = 'pizza_lair.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'pizzalair',
+        'USER': 'pizzalair-db23',
+        'PASSWORD': 'nocco',
+        'HOST': '34.65.210.57',
+        'PORT': '5432'
+        }
     }
-}
+
 
 
 # Password validation
