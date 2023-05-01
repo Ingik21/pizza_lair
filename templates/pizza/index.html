@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Welcome to pizza test world hello</h2>
+    <div class="pizza">
+        <h2>Welcome to pizza test world hello</h2>
+    </div>
+
+    {% for pizza in pizzas %}
+        {% if pizza.price < 1000 %}
+            <p>Chap pizza</p>
+            {% else %}
+            <p>Not cheap pizza</p>
+        {% endif %}
+        <h4>{{ pizza.name }}</h4>
+        <p>{{ pizza.price }}kr.</p>
+    {% endfor %}
 {% endblock %}
