@@ -3,7 +3,7 @@ from pizza.models import Pizza
 
 
 # Create your models here.
-class User(models.Model):
+class Offer(models.Model):
     name = models.CharField(max_length=255)
     member_since = models.DateTimeField()
     image = models.CharField(max_length=9999, blank=True)

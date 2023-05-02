@@ -2,10 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from pizza.forms.pizza_form import PizzaCreateForm
 from pizza.models import Pizza as pizza
-from user.models import User
+from offer.models import Offer
 from pizza.models import PizzaCategory
-from pizza.models import PizzaImage
-
 
 # Create your views here.
 

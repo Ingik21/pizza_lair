@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pizzalair.apps.PizzalairConfig',
     'pizza.apps.PizzaConfig',
-    'user.apps.UserConfig',
+    'offer.apps.OfferConfig',
 
 ]
 

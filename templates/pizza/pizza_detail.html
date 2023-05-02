@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="pizzaDetail">
     <h1>{{ pizza.name }}</h1>
     <p>{{ pizza.description }}</p>
     <p>{{ pizza.base_price }}</p>
     {% for pizza_image in pizza.pizzaimage_set.all %}
         <img src="{{ pizza_image.image }}" alt="Pizza" class="pizzaImageDetail">
     {% endfor %}
+    </div>
 {% endblock %}
