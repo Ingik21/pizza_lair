@@ -1,4 +1,6 @@
 from django.db import models
+from offer.models import Offer
+
 
 
 # Create your models here.
@@ -12,7 +14,7 @@ class Pizza(models.Model):
     category = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE, blank=True)
     base_price = models.FloatField()
     on_sale = models.BooleanField()
-    offer = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE, blank=True)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.name
