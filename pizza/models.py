@@ -2,20 +2,17 @@ from django.db import models
 
 
 # Create your models here.
-class PizzaToppings(models.Model):
+class PizzaCategory(models.Model):
     name = models.CharField(max_length=255)
-    price = models.FloatField()
-
-    def __str__(self):
-        return self.name
 
 
-class MenuPizzas(models.Model):
+class Pizza(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    toppings = models.ForeignKey(PizzaToppings, on_delete=models.CASCADE, blank=True)
+    category = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE, blank=True)
     base_price = models.FloatField()
     on_sale = models.BooleanField()
+    offer = models.ForeignKey(PizzaCategory, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.name
@@ -23,7 +20,7 @@ class MenuPizzas(models.Model):
 
 class PizzaImage(models.Model):
     image = models.CharField(max_length=9999)
-    pizza = models.ForeignKey(MenuPizzas, on_delete=models.CASCADE)
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
