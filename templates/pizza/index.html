@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="red">Pizzas</h1>
+    <div class="input-group">
+        <input type="search" class="form-control" placeholder="Enter your search here..." id="search-box"/>
+        <div class="input-group-btn">
+            <button type="button" id="search-btn" class="btn btn-default">Search</button>
+        </div>
+    </div>
     <div class="pizzas">
     {% for pizza in pizzas %}
         {% include 'pizza/single_pizza.html' with pizza=pizza %}
