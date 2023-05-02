@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Users</h1>
-    <div class="user">
-    {% for user in users %}
-        {% include 'user/single_user.html' with user=user %}
+    <h1>Offers</h1>
+    <div class="offer">
+    {% for offer in offers %}
+        {% include 'offers/single_offer.html' with offer=offer %}
     {% endfor %}
     </div>
 {% endblock %}

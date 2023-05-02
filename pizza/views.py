@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from pizza.models import MenuPizzas as pizza
-from user.models import User
+from offer.models import Offer
 from pizza.models import PizzaToppings
 from pizza.models import PizzaImage
 

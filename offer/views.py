@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from user.models import User
+from offer.models import Offer
 
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'offers/index.html', {'users': User.objects.all().order_by('name')})
+    return render(request, 'offers/index.html', {'offers': Offer.objects.all().order_by('name')})
