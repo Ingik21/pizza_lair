@@ -1,5 +1,4 @@
 <div class="wellUser">
-    <img src="{{ user.userimage_set.first.image }}" alt="" class="userImage">
+    <div class="userImage" style="image: url('{{ user.image }}')"></div>
     <h4>{{ user.name }}</h4>
 </div>
-
