@@ -1,16 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="pizza">
-        <h2>Welcome to pizza test world hello</h2>
+    <h1 class="red">Pizzas</h1>
+    <div class="pizzas">
+    {% for pizza in pizzas %}
+        {% include 'pizza/single_pizza.html' with pizza=pizza %}
+    {% endfor %}
     </div>
 
-    {% for pizza in pizzas %}
-        {% if pizza.price < 1000 %}
-            <p>Chap pizza</p>
-            {% else %}
-            <p>Not cheap pizza</p>
-        {% endif %}
-        <h4>{{ pizza.name }}</h4>
-        <p>{{ pizza.price }}kr.</p>
-    {% endfor %}
 {% endblock %}
