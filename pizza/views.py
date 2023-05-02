@@ -4,6 +4,7 @@ from pizza.forms.pizza_form import PizzaCreateForm
 from pizza.models import Pizza as pizza
 from offer.models import Offer
 from pizza.models import PizzaCategory
+from pizza.models import PizzaImage
 
 # Create your views here.
 
