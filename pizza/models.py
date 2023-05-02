@@ -10,10 +10,9 @@ class PizzaToppings(models.Model):
 class MenuPizzas(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    toppings = models.ForeignKey(PizzaToppings, on_delete=models.CASCADE)
+    toppings = models.ForeignKey(PizzaToppings, on_delete=models.CASCADE, blank=True)
     base_price = models.FloatField()
     on_sale = models.BooleanField()
-    
 
 
 class PizzaImage(models.Model):
