@@ -38,13 +38,13 @@ INSERT INTO pizza_pizzaimage (image,pizza_id) VALUES ('https://pizza.az/upload/i
 INSERT INTO pizza_pizzaimage (image,pizza_id) VALUES ('https://pizza.az/upload/iblock/f4f/f4f3e2cce270517c62adbd4ae6a95656.jpg',16);
 INSERT INTO pizza_pizzaimage (image,pizza_id) VALUES ('https://pizza.az/upload/iblock/809/80956e09d302a120d49b6fd1071fe5b7.jpg',17);
 
-INSERT INTO user_user (name,member_since,image,email,password,favorite_pizza_id) VALUES ('John Doe','2020-01-01','https://randomuser.me/api/portraits/men/93.jpg','johndoe@gmail.com','123456',15);
-INSERT INTO user_user (name,member_since,image,email,password,favorite_pizza_id) VALUES ('Jane Doe', '2002-02-02','https://randomuser.me/api/portraits/women/92.jpg','jane@yahoo.co.uk','123456',16);
-INSERT INTO user_user (name,member_since,image,email,password,favorite_pizza_id) VALUES ('Juan Jose', '2001-09-11','https://randomuser.me/api/portraits/lego/6.jpg','juan@doe.is','123456',17);
+INSERT INTO offer_offer (name,member_since,image,email,password,favorite_pizza_id) VALUES ('John Doe','2020-01-01','https://randomuser.me/api/portraits/men/93.jpg','johndoe@gmail.com','123456',15);
+INSERT INTO offer_offer (name,member_since,image,email,password,favorite_pizza_id) VALUES ('Jane Doe', '2002-02-02','https://randomuser.me/api/portraits/women/92.jpg','jane@yahoo.co.uk','123456',16);
+INSERT INTO offer_offer (name,member_since,image,email,password,favorite_pizza_id) VALUES ('Juan Jose', '2001-09-11','https://randomuser.me/api/portraits/lego/6.jpg','juan@doe.is','123456',17);
 
 
 select *
-from user_user;
+from offer_offer;
 
 select *
 from pizza_pizzatoppings;
