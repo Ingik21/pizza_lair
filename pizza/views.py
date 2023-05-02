@@ -13,12 +13,12 @@ def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         pizzas = [ {
-            'id': pizza.id,
-            'name': pizza.name,
-            'description': pizza.description,
-            'base_price': pizza.base_price,
-            'firstImage': pizza.pizzaimage_set.first().image
-        } for pizza in pizza.objects.filter(name__icontains=search_filter)]
+            'id': x.id,
+            'name': x.name,
+            'description': x.description,
+            'base_price': x.base_price,
+            'firstImage': x.pizzaimage_set.first().image
+        } for x in pizza.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': pizzas })
 
     context = {'pizzas': pizza.objects.all().order_by('name')}
