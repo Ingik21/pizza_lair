@@ -15,8 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MenuPizzas',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=True, verbose_name='ID')),
+                ('name', models.CharField(max_length=255, unique=True)),
                 ('description', models.CharField(max_length=255)),
                 ('base_price', models.FloatField()),
                 ('on_sale', models.BooleanField()),
@@ -25,15 +25,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PizzaToppings',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=True, verbose_name='ID')),
+                ('name', models.CharField(max_length=255, unique=True)),
                 ('price', models.FloatField()),
             ],
         ),
         migrations.CreateModel(
             name='PizzaImage',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=True, verbose_name='ID')),
                 ('image', models.CharField(max_length=9999)),
                 ('pizza', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pizza.menupizzas')),
             ],

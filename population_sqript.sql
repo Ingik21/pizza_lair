@@ -1,3 +1,8 @@
+TRUNCATE TABLE pizza_menupizzas,pizza_pizzatoppings,pizza_pizzaimage,user_user;
+
+
+
+
 INSERT INTO pizza_pizzatoppings (name,price) VALUES ('Pepperoni',300);
 INSERT INTO pizza_pizzatoppings (name,price) VALUES ('Mushrooms',200);
 INSERT INTO pizza_pizzatoppings (name,price) VALUES ('Onions',100);

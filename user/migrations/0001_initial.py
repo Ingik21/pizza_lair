@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=True, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('member_since', models.DateTimeField()),
                 ('image', models.CharField(blank=True, max_length=9999)),
-                ('email', models.CharField(max_length=255)),
+                ('email', models.CharField(max_length=255, unique=True)),
                 ('password', models.CharField(max_length=32)),
                 ('favorite_pizza', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='pizza.menupizzas')),
             ],
