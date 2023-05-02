@@ -1,10 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
-from pizza.models import MenuPizzas as pizza
-from offer.models import Offer
-from pizza.models import PizzaToppings
-from pizza.models import PizzaImage
-
+from django.shortcuts import render, get_object_or_404, redirect
 from pizza.forms.pizza_form import PizzaCreateForm
 from pizza.models import Pizza as pizza
 from offer.models import Offer
