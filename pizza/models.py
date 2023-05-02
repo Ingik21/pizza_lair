@@ -6,6 +6,9 @@ class PizzaToppings(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField()
 
+    def __str__(self):
+        return self.name
+
 
 class MenuPizzas(models.Model):
     name = models.CharField(max_length=255)
@@ -14,7 +17,13 @@ class MenuPizzas(models.Model):
     base_price = models.FloatField()
     on_sale = models.BooleanField()
 
+    def __str__(self):
+        return self.name
+
 
 class PizzaImage(models.Model):
     image = models.CharField(max_length=9999)
     pizza = models.ForeignKey(MenuPizzas, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
