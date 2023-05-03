@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from pizza.forms.pizza_form import PizzaCreateForm
@@ -37,11 +38,13 @@ def index(request):
     return render(request, 'pizza/index.html', context)
 
 
+@login_required
 def get_pizza_by_id(request, id):
     return render(request, 'pizza/pizza_detail.html', {
         'pizza': get_object_or_404(pizza, pk=id)})
 
 
+@login_required
 def create_pizza(request):
     if request.method == 'POST':
         form = PizzaCreateForm(data=request.POST)
