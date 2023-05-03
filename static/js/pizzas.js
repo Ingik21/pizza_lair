@@ -12,6 +12,7 @@ $(document).ready(function () {
                                     <img class="pizzaImage" src="${d.firstImage}" alt=""/>
                                     <h4>${d.name}</h4>
                                     <p>${d.description}</p>
+                                    <p>${d.base_price} ISK</p>
                                 </a>
                             </div>`
                 });
