@@ -15,7 +15,7 @@ $(document).ready(function () {
                                 </a>
                             </div>`
                 });
-                $('.pizzas').html(newHtml.join(''));
+                $('.pizza').html(newHtml.join(''));
                 $('#search-box').val('');
         },
         error: function (xhr, status, error) {

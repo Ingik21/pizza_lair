@@ -6,18 +6,19 @@ from django.shortcuts import render, redirect
 
 
 def register(request):
-    if register.method == 'POST':
+    if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
 
-    return render(request, 'users/register.html', {
-        'form':UserCreationForm()})
+    return render(request, 'user/register.html', {
+        'form': UserCreationForm()})
 
 
 def login(request):
-    return render(request, 'users/login.html')
+    return render(request, 'user/login.html')
+
 
 def logout(request):
-    return render(request, 'users/logout.html')
+    return render(request, 'user/logout.html')
