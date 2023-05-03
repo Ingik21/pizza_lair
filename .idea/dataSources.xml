@@ -10,11 +10,11 @@
       <jdbc-url>jdbc:postgresql://34.65.210.57:5432/pizzalair</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="pizzalair@34.65.210.57" uuid="6656b731-3465-4622-9f49-25f73b3c4d99">
+    <data-source source="LOCAL" name="pizzalair" uuid="6656b731-3465-4622-9f49-25f73b3c4d99">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://34.65.210.57:5432/pizzalair</jdbc-url>
+      <jdbc-url>jdbc:postgresql://35.223.227.56:5432/pizzalair-new-db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
