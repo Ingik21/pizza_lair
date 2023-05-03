@@ -2,8 +2,15 @@
     <a href="/pizza/{{ pizza.id }}">
         <img src="{{ pizza.pizzaimage_set.first.image }}" alt="" class="pizzaImage">
         <h4>{{ pizza.name }}</h4>
+
+
+        {% for category_name in pizza.pizzacategory_set.all %}
+            <p>{{ pizza_pizzacategory.name }}</p>
+        {% endfor %}
+
         <p>{{ pizza.description }}</p>
         <p>{{ pizza.base_price }} ISK</p>
+
 
     </a>
 </div>

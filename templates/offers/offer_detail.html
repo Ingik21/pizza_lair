@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="offerDetail">
+    <h1>{{ offer.name }}</h1>
+
+    <p>{{ offer.offer_price }} ISK</p>
+
+    {% for offer_image in pizza.offer_set.all %}
+        <img src="{{ offer.image }}" alt="offer" class="pizzaImageDetail">
+    {% endfor %}
+    </div>
+{% endblock %}
