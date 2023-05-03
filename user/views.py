@@ -13,11 +13,12 @@ def register(request):
             return redirect('login')
 
     return render(request, 'users/register.html', {
-        'form':UserCreationForm()})
+        'form': UserCreationForm()})
 
 
 def login(request):
     return render(request, 'users/login.html')
+
 
 def logout(request):
     return render(request, 'users/logout.html')
