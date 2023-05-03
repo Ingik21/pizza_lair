@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'pizzalair.apps.PizzalairConfig',
     'pizza.apps.PizzaConfig',
     'offer.apps.OfferConfig',
-    'users.apps.UsersConfig',
+    'user.apps.UserConfig',
 
 ]
 
