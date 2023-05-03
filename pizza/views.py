@@ -6,20 +6,32 @@ from offer.models import Offer
 from pizza.models import PizzaCategory
 from pizza.models import PizzaImage
 
+
 # Create your views here.
 
 
 def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        pizzas = [ {
+        pizzas = [{
             'id': x.id,
             'name': x.name,
             'description': x.description,
             'base_price': x.base_price,
             'firstImage': x.pizzaimage_set.first().image
         } for x in pizza.objects.filter(name__icontains=search_filter)]
-        return JsonResponse({'data': pizzas })
+        return JsonResponse({'data': pizzas})
+
+    # if 'category' in request.GET:
+    # category = request.GET['category']
+    # pizzas = [{
+    #    'id': x.id,
+    #    'name': x.name,
+    #    'description': x.description,
+    #    'base_price': x.base_price,
+    #    'firstImage': x.pizzaimage_set.first().image
+    # } for x in pizza.objects.filter(category__name__icontains=category)]
+    # return JsonResponse({'data': pizzas})
 
     context = {'pizzas': pizza.objects.all().order_by('name')}
     return render(request, 'pizza/index.html', context)
@@ -34,8 +46,8 @@ def create_pizza(request):
     if request.method == 'POST':
         form = PizzaCreateForm(data=request.POST)
         if form.is_valid():
-            pizza = form.save()
-            pizza_image = PizzaImage(image=request.POST['image'], pizza=pizza)
+            pizza_ = form.save()
+            pizza_image = PizzaImage(image=request.POST['image'], pizza=pizza_)
             pizza_image.save()
             return redirect('candy-index')
     else:
