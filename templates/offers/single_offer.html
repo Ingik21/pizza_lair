@@ -1,5 +1,8 @@
 <div class="wellOffer">
+    <a href="/offers/{{ offer.id }}">
     <div class="offerImage" style="image: url('{{ offer.image }}')"></div>
+    <img src="{{ offer_offer.offer_image }}" alt="Image of pizzas" class="offerImage">
     <h4>{{ offer.name }}</h4>
-    <p>Offer since: {{ offer.member_since }}</p>
+    <p>{{ offer.offer_price }} ISK</p>
+</a>
 </div>
