@@ -3,7 +3,7 @@ $(document).ready(function () {
         e.preventDefault();
         var searchText = $('#search-box').val();
         $.ajax({
-            url: '/pizzas?search_filter=' + searchText,
+            url: '/pizza?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
                 var newHtml = resp.data.map(d => {
@@ -15,7 +15,7 @@ $(document).ready(function () {
                                 </a>
                             </div>`
                 });
-                $('.pizzas').html(newHtml.join(''));
+                $('.pizza').html(newHtml.join(''));
                 $('#search-box').val('');
         },
         error: function (xhr, status, error) {
