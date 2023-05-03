@@ -64,3 +64,4 @@ from pizza_pizza;
 
 select *
 from pizza_pizzaimage;
+
