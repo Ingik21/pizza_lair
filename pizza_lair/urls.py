@@ -23,6 +23,7 @@ urlpatterns = [
     path('pizza/', include('pizza.url')),
     path('offers/', include('offer.urls')),
     path('user/', include('user.urls')),
+    path('cart/', include('cart.urls')),
 
 
 ]
