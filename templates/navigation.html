@@ -24,7 +24,7 @@
               <img src="{{ user.profile.image }}" class="profile-image" style="width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-left: 10px;"/>
+    margin: 10px;"/>
               <li><a href="{% url 'profile' %}">Profile</a></li>
               <li><a href="{% url 'logout' %}">Logout</a></li>
 
@@ -67,8 +67,8 @@
 
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/admin">Checkout</a></li>
-          <li><a href="/admin">View Cart</a></li>
+        <li><a href="{% url 'cart-index' %}">Checkout</a></li>
+          <li><a href="{% url 'cart-index' %}">View Cart</a></li>
 
 
       </ul>

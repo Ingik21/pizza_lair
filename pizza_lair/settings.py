@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'pizza.apps.PizzaConfig',
     'offer.apps.OfferConfig',
     'user.apps.UserConfig',
+    'cart.apps.CartConfig',
 
 ]
 
