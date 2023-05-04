@@ -11,6 +11,8 @@
         <p>{{ pizza.description }}</p>
         <p>{{ pizza.base_price }} ISK</p>
 
-
     </a>
+          {% if user.is_authenticated %}
+     <button>Add to cart</button>
+    {% endif %}
 </div>
