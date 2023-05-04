@@ -11,6 +11,15 @@
 
 }
 
+.navbar .navbar-nav li a {
+    color: white !important;
+}
+
+
+.navbar .navbar-nav li a:hover {
+    color: red !important;
+}
+
 .profile-image{
     width: 40px;
     height: 40px;
