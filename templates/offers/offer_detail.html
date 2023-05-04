@@ -7,7 +7,7 @@
     <p>{{ offer.offer_price }} ISK</p>
 
     {% for offer_image in pizza.offer_set.all %}
-        <img src="{{ offer.image }}" alt="offer" class="pizzaImageDetail">
+        <img src="{{ offer_offer.image }}" alt="offer" class="pizzaImageDetail">
     {% endfor %}
     </div>
 {% endblock %}
