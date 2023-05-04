@@ -11,6 +11,7 @@
     {% for pizza_image in pizza.pizzaimage_set.all %}
         <img src="{{ pizza_image.image }}" alt="Pizza" class="pizzaImageDetail">
     {% endfor %}
+    <p> {{ pizza.category.name }}
 
     </div>
     <p></p>
