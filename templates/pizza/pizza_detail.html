@@ -11,5 +11,10 @@
     {% for pizza_image in pizza.pizzaimage_set.all %}
         <img src="{{ pizza_image.image }}" alt="Pizza" class="pizzaImageDetail">
     {% endfor %}
+
     </div>
+    <p></p>
+    {% if user.is_authenticated %}
+     <button>Add to cart</button>
+    {% endif %}
 {% endblock %}
