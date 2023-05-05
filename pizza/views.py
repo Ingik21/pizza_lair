@@ -34,7 +34,7 @@ def index(request):
     # } for x in pizza.objects.filter(category__name__icontains=category)]
     # return JsonResponse({'data': pizzas})
 
-    context = {'pizzas': pizza.objects.all().order_by('name')}
+    context = {'pizzas': pizza.objects.all().order_by()}
     return render(request, 'pizza/index.html', context)
 
 

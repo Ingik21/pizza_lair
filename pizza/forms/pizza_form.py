@@ -21,4 +21,3 @@ class PizzaCreateForm(ModelForm):
 
 class PizzaFilterByCategoryForm(forms.Form):
     category = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    
