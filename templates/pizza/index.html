@@ -7,17 +7,22 @@
             <button type="button" id="search-btn" class="btn btn-default">Search</button>
         </div>
     </div>
-    <button id="order-by-price" onclick="orderByPrice()">Order by price</button>
 
-    <div class="order-by">
-    {% for pizza in orderByPizza %}
-        <div>
-            <h2>{{ pizza.name }}</h2>
-            <p>{{ pizza.description }}</p>
-            <p>Price: ${{ pizza.base_price }}</p>
+    <div class="dropdownOrderBy">
+        <button class="dropbuttonOrderBy">Order By</button>
+        <div class="dropdownOrderBy-content">
+            <a href="?order_by=name">Name</a>
+            <a href="?order_by=base_price">Price</a>
         </div>
-    {% endfor %}
+    </div>
 
+    <div class="dropdownOrderBy">
+        <button class="dropbuttonOrderBy">Filter By Category</button>
+        <div class="dropdownOrderBy-content">
+        {% for pizza in pizzas %}
+            <a href="?category={{ pizza.category.name }}">{{ pizza.category.name }}</a>
+        {% endfor %}
+        </div>
     </div>
 
     <div class="pizzas">

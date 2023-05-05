@@ -23,22 +23,20 @@ def index(request):
         } for x in pizza.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': pizzas})
 
-    # if 'category' in request.GET:
-    # category = request.GET['category']
-    # pizzas = [{
-    #    'id': x.id,
-    #    'name': x.name,
-    #    'description': x.description,
-    #    'base_price': x.base_price,
-    #    'firstImage': x.pizzaimage_set.first().image
-    # } for x in pizza.objects.filter(category__name__icontains=category)]
-    # return JsonResponse({'data': pizzas})
+    order_by = request.GET.get('order_by')
+    pizzas = pizza.objects.all()
+    category = request.GET.get('category')
 
-    context = {'pizzas': pizza.objects.all().order_by()}
+    if category:
+        pizzas = pizzas.filter(category__name=category)
+
+    if order_by == 'name':
+        pizzas = pizzas.order_by('name')
+    elif order_by == 'base_price':
+        pizzas = pizzas.order_by('base_price')
+
+    context = {'pizzas': pizzas}
     return render(request, 'pizza/index.html', context)
-
-
-
 
 
 @login_required
@@ -62,6 +60,12 @@ def create_pizza(request):
 
 
 def order_by_price(request):
-    order_by = pizza.objects.all()
-    filters = order_by.order_by('base_price')
-    return render(request, 'pizza/index.html', {'orderByPizza': filters})
+    return index(request)
+
+
+def order_by_name(request):
+    return index(request)
+
+
+def filter_by_category(request):
+    return index(request)
