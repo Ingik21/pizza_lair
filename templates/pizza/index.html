@@ -7,7 +7,7 @@
             <button type="button" id="search-btn" class="btn btn-default">Search</button>
         </div>
     </div>
-    <button id="order-by-price">Order by price</button>
+    <button id="order-by-price" onclick="orderByPrice()">Order by price</button>
 
     <div class="order-by">
     {% for pizza in orderByPizza %}
@@ -18,15 +18,6 @@
         </div>
     {% endfor %}
 
-    <script>
-        document.getElementById("order-by-price").addEventListener("click", function() {
-            fetch('/order-by-price')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementsByTagName("body")[0].innerHTML = data;
-                });
-        });
-    </script>
     </div>
 
     <div class="pizzas">
