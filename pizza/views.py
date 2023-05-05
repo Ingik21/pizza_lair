@@ -55,12 +55,13 @@ def create_pizza(request):
             pizza_ = form.save()
             pizza_image = PizzaImage(image=request.POST['image'], pizza=pizza_)
             pizza_image.save()
-            return redirect('candy-index')
+            return redirect('pizza-index')
     else:
         form = PizzaCreateForm()
-    return render(request, 'pizza/create_pizza.html', {'from': form})
+    return render(request, 'pizza/create_pizza.html', {'form': form})
 
 
-
-
-
+def order_by_price(request):
+    order_by = pizza.objects.all()
+    filters = order_by.order_by('base_price')
+    return render(request, 'pizza/index.html', {'orderByPizza': filters})

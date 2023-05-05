@@ -6,8 +6,12 @@
 
     <p>{{ offer.offer_price }} ISK</p>
 
-    {% for offer_image in pizza.offer_set.all %}
-        <img src="{{ offer_offer.image }}" alt="offer" class="pizzaImageDetail">
-    {% endfor %}
+
+        <img src="{{ offer.offer_image }}" alt="offer" class="offerImageDetail">
+
+    <p></p>
+    {% if user.is_authenticated %}
+     <button>Add to cart</button>
+    {% endif %}
     </div>
 {% endblock %}
