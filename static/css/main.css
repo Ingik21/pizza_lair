@@ -14,13 +14,31 @@
 .navbar .navbar-nav li a {
     color: white !important;
 }
+<<<<<<< HEAD
 
 
 .navbar .navbar-nav li a:hover {
     color: red !important;
 }
 
+=======
+>>>>>>> master
 
+
+.navbar .navbar-nav li a:hover {
+    color: red !important;
+}
+
+a.navbar-brand {
+    color: white !important;
+}
+
+.profile-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
 
 .logo{
     width: 30px;
@@ -32,12 +50,22 @@
     flex-wrap: wrap;
 }
 
+.offers{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .pizzaImage{
     width: 300px;
     height: 300px;
-
-
 }
+
+.offerImage{
+    width: 300px;
+    height: 300px;
+}
+
+
 
 .pizzaImage:hover{
     width: 300px;
@@ -49,6 +77,22 @@
 }
 
 .pizzaImageDetail{
+    width: 500px;
+    height: 500px;
+    border: solid 1px black;
+
+}
+
+.offerImage:hover{
+    width: 300px;
+    height: 300px;
+    border: solid 1px black;
+    cursor: crosshair;
+
+
+}
+
+.offerImageDetail{
     width: 500px;
     height: 500px;
     border: solid 1px black;
@@ -84,9 +128,26 @@ pizzaDetail{
     height: 100%;
 }
 
-offerImage{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+.test{
+    width: 100%;
+    height: 100%;
 }
+
+@media screen and (max-width: 1199px) {
+    .wellPizza{
+        width: 100%;
+    }
+    .pizzas
+    {
+        width: 100%;
+    }
+    .pizzaImage{
+    width: 50%;
+    height: 50%;
+}
+
+    .wellOffer{
+        width: 100%;
+    }
+}
+

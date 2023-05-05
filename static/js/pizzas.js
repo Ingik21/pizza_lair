@@ -27,4 +27,16 @@ $(document).ready(function () {
     });
 });
 
+<<<<<<< HEAD
 
+=======
+function orderByPrice() {
+    document.getElementById("order-by-price").addEventListener("click", function () {
+        fetch('/order-by-price')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementsByTagName("body")[0].innerHTML = data;
+            });
+    });
+}
+>>>>>>> master

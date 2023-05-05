@@ -7,6 +7,19 @@
             <button type="button" id="search-btn" class="btn btn-default">Search</button>
         </div>
     </div>
+    <button id="order-by-price" onclick="orderByPrice()">Order by price</button>
+
+    <div class="order-by">
+    {% for pizza in orderByPizza %}
+        <div>
+            <h2>{{ pizza.name }}</h2>
+            <p>{{ pizza.description }}</p>
+            <p>Price: ${{ pizza.base_price }}</p>
+        </div>
+    {% endfor %}
+
+    </div>
+
     <div class="pizzas">
     {% for pizza in pizzas %}
         {% include 'pizza/single_pizza.html' with pizza=pizza %}

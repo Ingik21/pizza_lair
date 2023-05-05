@@ -15,6 +15,7 @@ def register(request):
     return render(request, 'user/register.html', {
         'form': UserCreationForm()})
 
+
 def profile(request):
     profile = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':

@@ -17,3 +17,7 @@ class PizzaCreateForm(ModelForm):
             'offer': widgets.Select(attrs={'class': 'form-control'}),
             'on_sale': widgets.CheckboxInput(attrs={'class': 'checkbox'})
         }
+
+
+class PizzaFilterByCategoryForm(forms.Form):
+    category = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))

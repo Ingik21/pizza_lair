@@ -9,8 +9,11 @@
         {% endfor %}
 
         <p>{{ pizza.description }}</p>
-        <p>{{ pizza.base_price }} ISK</p>
-
 
     </a>
+        <p>{{ pizza.base_price }} ISK</p>
+        <p>Category: {{ pizza.category.name }}</p>
+          {% if user.is_authenticated %}
+     <button data-pizza="{{pizza.id}}" data-action="add" class="update-cart">Add to cart</button>
+    {% endif %}
 </div>
