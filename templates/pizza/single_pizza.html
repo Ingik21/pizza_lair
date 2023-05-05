@@ -14,6 +14,6 @@
         <p>{{ pizza.base_price }} ISK</p>
         <p>Category: {{ pizza.category.name }}</p>
           {% if user.is_authenticated %}
-     <button>Add to cart</button>
+     <button data-pizza="{{pizza.id}}" data-action="add" class="update-cart">Add to cart</button>
     {% endif %}
 </div>
