@@ -38,6 +38,9 @@ def index(request):
     return render(request, 'pizza/index.html', context)
 
 
+
+
+
 @login_required
 def get_pizza_by_id(request, id):
     return render(request, 'pizza/pizza_detail.html', {
