@@ -12,6 +12,8 @@ from pizza.models import PizzaImage
 
 
 def index(request):
+
+
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         pizzas = [{
@@ -25,6 +27,7 @@ def index(request):
 
     order_by = request.GET.get('order_by')
     pizzas = pizza.objects.all()
+    categorys = PizzaCategory.objects.all()
     category = request.GET.get('category')
 
     if category:
@@ -35,7 +38,8 @@ def index(request):
     elif order_by == 'base_price':
         pizzas = pizzas.order_by('base_price')
 
-    context = {'pizzas': pizzas}
+    context = {'pizzas': pizzas
+               , 'categorys': categorys}
     return render(request, 'pizza/index.html', context)
 
 
