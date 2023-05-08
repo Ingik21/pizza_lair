@@ -5,6 +5,11 @@
     margin-top: 20px;
 }
 
+.banner{
+    background: image("static/images/Pizza Lair.jpg");
+    width: 100%;
+}
+
 .navbar {
     background: black !important;
     border: black !important;
