@@ -158,6 +158,17 @@ pizzaDetail{
   cursor: pointer;
 }
 
+.reset-btn{
+    font-size: 14px;
+  border: black;
+  outline: black;
+  color: white;
+  background-color: #e31837;
+  padding: 14px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
 .dropdownOrderBy-content {
   display: none;
   background-color: #006491;
