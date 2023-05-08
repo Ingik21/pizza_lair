@@ -5,12 +5,14 @@ import json
 
 from cart.models import Order, OrderItem
 from pizza.models import Pizza
+from user.models import Profile
+
 
 
 # Create your views here.
 @login_required
 def index(request):
-    return render(request, 'cart/index.html')
+    return cart(request)
 
 def update_item(request):
     data = json.loads(request.body)
@@ -20,42 +22,49 @@ def update_item(request):
     print('Pizza:', pizzaId)
 
 
-    customer = request.profile.user
+    user = request.user.profile
     pizza = Pizza.objects.get(id=pizzaId)
 
-    order, created = Order.objects.get_or_create(user=customer, complete=False)
+    order, created = Order.objects.get_or_create(user=user, complete=False)
 
-    orderItem, created = OrderItem.objects.get_or_create(order=order, pizza=pizza)
+    order_item, created = OrderItem.objects.get_or_create(order=order, pizza=pizza)
 
     if action == 'add':
-        orderItem.quantity = (orderItem.quantity + 1)
+        order_item.quantity = (order_item.quantity + 1)
     elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
+        order_item.quantity = (order_item.quantity - 1)
 
-    orderItem.save()
-
-
-
-    if orderItem.quantity <= 0:
-        orderItem.delete()
+    order_item.save()
 
 
 
+    if order_item.quantity <= 0:
+        order_item.delete()
 
 
-    return JsonResponse('Item was added', safe=False)
 
+    return JsonResponse({'message': 'Item was added',  'quantity': order_item.quantity, 'name': order_item.pizza.name, 'price': order_item.pizza.base_price},safe=False)
+
+
+
+@login_required
 def cart(request):
+    print("test")
 
-    if request.user.is_authenticated:
-        user = request.Profile.user
-        order, created = Order.objects.get_or_create(user=user, complete=False)
-        items = order.orderitem_set.all()
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
 
-    else:
-        items = []
+    order_items = order.orderitem_set.all()
 
-    context = {'items': items}
+    print(order_items)
+
+
+
+
+
+
+    context = {'order_items': order_items}
+
 
     return render(request, 'cart/index.html', context)
 

@@ -27,9 +27,6 @@ $(document).ready(function () {
     });
 });
 
-<<<<<<< HEAD
-
-=======
 function orderByPrice() {
     document.getElementById("order-by-price").addEventListener("click", function () {
         fetch('/order-by-price')
@@ -39,4 +36,4 @@ function orderByPrice() {
             });
     });
 }
->>>>>>> master
+

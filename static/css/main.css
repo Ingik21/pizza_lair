@@ -14,15 +14,14 @@
 .navbar .navbar-nav li a {
     color: white !important;
 }
-<<<<<<< HEAD
+
 
 
 .navbar .navbar-nav li a:hover {
     color: red !important;
 }
 
-=======
->>>>>>> master
+
 
 
 .navbar .navbar-nav li a:hover {
@@ -134,7 +133,7 @@ a.navbar-brand {
 
 .cart-row{
     display: flex;
-    align-content: space-evenly;
+    align-content: stretch;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ececec;
@@ -158,10 +157,17 @@ a.navbar-brand {
     transition: .1s;
 }
 
+
 .chg-quantity:hover{
     opacity: .6;
 }
 
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
 
 
 @media screen and (max-width: 1199px) {
@@ -180,6 +186,11 @@ a.navbar-brand {
     .wellOffer{
         width: 100%;
     }
+
+    .cart-row{
+        width: 100%;
+    }
+
 
 }
 

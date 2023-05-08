@@ -7,6 +7,11 @@ from user.models import Profile
 # Create your models here.
 
 
+
+
+
+
+
 class Order(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
@@ -16,6 +21,8 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
+    #todo get_cart_total
+    #todo get_cart_items
 
 class OrderItem(models.Model):
     pizza = models.ForeignKey(Pizza, on_delete=models.SET_NULL, blank=True, null=True)
