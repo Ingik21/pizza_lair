@@ -36,7 +36,7 @@
                 <div class="cart-row">
                 {% if order_items %}
                 {% for item in order_items %}
-                <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
+                <div style="flex:2"><img class="row-image" src="{{item.pizza.pizzaimage_set.first.image}}"></div>
                 <div style="flex:2"><p>{{ item.pizza.name }}</p></div>
                 <div style="flex:1"><p>{{ item.pizza.base_price }}</p></div>
                 <div style="flex:1">
@@ -45,9 +45,11 @@
                         <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
                         <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
                     </div>
+                <br>
                 </div>
 
-                <div style="flex:1"><p>300 isk</p></div>
+
+
                 {% endfor %}
                 {% else %}
 
