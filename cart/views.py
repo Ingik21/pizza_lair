@@ -7,7 +7,7 @@ from cart.models import Order, OrderItem
 from pizza.models import Pizza
 from user.models import Profile
 
-
+#pizza
 
 # Create your views here.
 @login_required
