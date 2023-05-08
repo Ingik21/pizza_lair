@@ -16,9 +16,21 @@
 }
 
 
+
 .navbar .navbar-nav li a:hover {
     color: red !important;
 }
+
+
+
+
+.navbar .navbar-nav li a:hover {
+    color: red !important;
+}
+
+
+
+
 
 a.navbar-brand {
     color: white !important;
@@ -90,9 +102,6 @@ a.navbar-brand {
 
 }
 
-pizzaDetail{
-
-}
 
 .red{
     color: red;
@@ -119,10 +128,47 @@ pizzaDetail{
     height: 100%;
 }
 
-.test{
-    width: 100%;
-    height: 100%;
+
+
+
+.cart-row{
+    display: flex;
+    align-content: stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
 }
+
+.row-image {
+    width: 100px;
+}
+
+.quantity {
+    display: inline-block;
+    font-weight: 700;
+    padding-right: 10px;
+}
+
+.chg-quantity {
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: .1s;
+}
+
+
+.chg-quantity:hover{
+    opacity: .6;
+}
+
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
 
 @media screen and (max-width: 1199px) {
     .wellPizza{
@@ -140,6 +186,12 @@ pizzaDetail{
     .wellOffer{
         width: 100%;
     }
+
+    .cart-row{
+        width: 100%;
+    }
+
+
 }
 
 .dropdownOrderBy {
