@@ -34,6 +34,10 @@ def update_item(request):
     elif action == 'remove':
         order_item.quantity = (order_item.quantity - 1)
 
+    elif action == 'delete':
+        order_item.quantity = 0
+
+
     order_item.save()
 
 
