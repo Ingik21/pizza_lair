@@ -7,7 +7,7 @@ from cart.models import Order, OrderItem
 from pizza.models import Pizza
 from user.models import Profile
 
-#pizza
+
 
 # Create your views here.
 @login_required
@@ -33,6 +33,10 @@ def update_item(request):
         order_item.quantity = (order_item.quantity + 1)
     elif action == 'remove':
         order_item.quantity = (order_item.quantity - 1)
+
+    elif action == 'delete':
+        order_item.quantity = 0
+
 
     order_item.save()
 
