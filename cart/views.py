@@ -63,7 +63,7 @@ def cart(request):
 
 
 
-    context = {'order_items': order_items}
+    context = {'order_items': order_items, 'order': order}
 
 
     return render(request, 'cart/index.html', context)

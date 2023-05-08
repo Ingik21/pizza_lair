@@ -132,8 +132,9 @@ a.navbar-brand {
 
 
 .cart-row{
+    width: 100%;
     display: flex;
-    align-content: stretch;
+    flex-wrap: wrap;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ececec;
@@ -201,6 +202,17 @@ a.navbar-brand {
 
 .dropbuttonOrderBy {
   font-size: 14px;
+  border: black;
+  outline: black;
+  color: white;
+  background-color: #e31837;
+  padding: 14px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.reset-btn{
+    font-size: 14px;
   border: black;
   outline: black;
   color: white;
