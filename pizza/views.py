@@ -10,10 +10,12 @@ from pizza.models import PizzaImage
 
 # Create your views here.
 
+def home(request):
+    offers = Offer.objects.all()
+    return render(request, 'pizza/home.html')
+
 
 def index(request):
-
-
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         pizzas = [{
@@ -39,7 +41,7 @@ def index(request):
         pizzas = pizzas.order_by('base_price')
 
     context = {'pizzas': pizzas
-               , 'categorys': categorys}
+        , 'categorys': categorys}
     return render(request, 'pizza/index.html', context)
 
 
@@ -47,9 +49,6 @@ def index(request):
 def get_pizza_by_id(request, id):
     return render(request, 'pizza/pizza_detail.html', {
         'pizza': get_object_or_404(pizza, pk=id)})
-
-
-
 
 
 @login_required
