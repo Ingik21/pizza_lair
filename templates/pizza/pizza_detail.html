@@ -5,13 +5,10 @@
     <h1>{{ pizza.name }}</h1>
     <p>{{ pizza.description }}</p>
     <p>{{ pizza.base_price }} ISK</p>
-    {% for category in pizza.pizzacategory %}
-        <p>{{ category.name }}</p>
-    {% endfor %}
     {% for pizza_image in pizza.pizzaimage_set.all %}
         <img src="{{ pizza_image.image }}" alt="Pizza" class="pizzaImageDetail">
     {% endfor %}
-    <p> {{ pizza.category.name }}
+        <p> {{ pizza.category.name }} </p>
 
     </div>
     <p></p>

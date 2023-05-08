@@ -27,13 +27,20 @@ $(document).ready(function () {
     });
 });
 
-function orderByPrice() {
-    document.getElementById("order-by-price").addEventListener("click", function () {
-        fetch('/order-by-price')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementsByTagName("body")[0].innerHTML = data;
-            });
+
+document.getElementById("order-by-price").addEventListener("click", function () {
+  fetch('/?order_by=base_price')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementsByTagName("body")[0].innerHTML = data;
     });
-}
+});
+
+document.getElementById("order-by-name").addEventListener("click", function () {
+  fetch('/?order_by=name')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementsByTagName("body")[0].innerHTML = data;
+    });
+});
 
