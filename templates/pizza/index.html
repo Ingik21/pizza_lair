@@ -19,11 +19,13 @@
     <div class="dropdownOrderBy">
         <button class="dropbuttonOrderBy">Filter By Category</button>
         <div class="dropdownOrderBy-content">
-        {% for pizza in pizzas %}
-            <a href="?category={{ pizza.category.name }}">{{ pizza.category.name }}</a>
+            {% for pizzacategory in categorys %}
+            <a href="?category={{ pizzacategory.name }}">{{ pizzacategory.name }}</a>
         {% endfor %}
         </div>
     </div>
+
+
 
     <div class="pizzas">
     {% for pizza in pizzas %}
