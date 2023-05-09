@@ -21,8 +21,6 @@ def get_offer_by_id(request, id):
         'offer': get_object_or_404(Offer, pk=id)})
 
 
-
-
 def two_for_one_offer(request):
     pizzas = pizza.objects.all()
     context = {'pizzas': pizzas}
@@ -47,5 +45,7 @@ def two_for_one_offer(request):
         }
 
         return render(request, 'offers/index.html', context)
+
+    return render(request, 'offers/2f1.html', context)
 
 
