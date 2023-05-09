@@ -114,8 +114,20 @@ function checkoutForm(){
         })
     })
 }
->>>>>>> master
+
+function getContactInfo():{name: string, email: string, address: string, city: string, state: string, zipcode: string}{
+    console.log("You're here")
 
 
-=======
->>>>>>> c1c5161cd12b0f2b0fa576904957b73d56b26b56
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    const zipcode = document.getElementById('zipcode').value;
+
+    console.log("Hello test")
+    console.log(name, email, address, city, state, zipcode)
+    return name, email, address, city, state, zipcode
+}

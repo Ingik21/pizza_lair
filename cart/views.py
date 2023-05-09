@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
 
-
 from offer.models import Offer
-from cart.models import Order, OrderItem, ContactInformation, ShippingAddress,OrderItemOffer
+from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer
 from pizza.models import Pizza
 from user.models import Profile
 
@@ -43,10 +42,9 @@ def update_item(request):
     if order_item.quantity <= 0:
         order_item.delete()
 
-<<<<<<< HEAD
+    return JsonResponse({'message': 'Item was added', 'quantity': order_item.quantity, 'name': order_item.pizza.name,
+                         'price': order_item.pizza.base_price}, safe=False)
 
-
-    return JsonResponse({'message': 'Item was added',  'quantity': order_item.quantity, 'name': order_item.pizza.name, 'price': order_item.pizza.base_price},safe=False)
 
 def update_item_offer(request):
     data = json.loads(request.body)
@@ -62,8 +60,6 @@ def update_item_offer(request):
 
     order_item_offer, created = OrderItemOffer.objects.get_or_create(order=order, offer=offer)
 
-
-
     print(order_item_offer)
     if action == 'add':
         order_item_offer.quantity = (order_item_offer.quantity + 1)
@@ -78,12 +74,8 @@ def update_item_offer(request):
     if order_item_offer.quantity <= 0:
         order_item_offer.delete()
 
-    return JsonResponse({'message': 'Item was added', 'name': order_item_offer.offer.name, 'id': order_item_offer.offer.id}, safe=False)
-
-=======
-    return JsonResponse({'message': 'Item was added', 'quantity': order_item.quantity, 'name': order_item.pizza.name,
-                         'price': order_item.pizza.base_price}, safe=False)
->>>>>>> master
+    return JsonResponse(
+        {'message': 'Item was added', 'name': order_item_offer.offer.name, 'id': order_item_offer.offer.id}, safe=False)
 
 
 @login_required
@@ -93,7 +85,6 @@ def cart(request, url="cart/index.html"):
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user, complete=False)
 
-
     order_items = order.orderitem_set.all()
 
     order_items_offer = order.orderitemoffer_set.all()
@@ -101,16 +92,9 @@ def cart(request, url="cart/index.html"):
     print(order_items)
     print(order_items_offer.__dict__)
 
-<<<<<<< HEAD
-
-
-
-
-
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
-=======
+
     context = {'order_items': order_items, 'order': order}
->>>>>>> master
 
     return render(request, url, context)
 
@@ -119,24 +103,10 @@ def checkout(request):
     return cart(request, 'cart/checkout.html')
 
 
-<<<<<<< HEAD
-
-
-
-=======
 def payment(request):
-    name = request.POST.get('name')
-    email = request.POST.get('email')
-    phone_number = request.POST.get('phone_number')
-    address = request.POST.get('address')
-    city = request.POST.get('city')
-    user = request.user.profile
-    order, created = Order.objects.get_or_create(user=user, complete=False)
-    contact_information = ContactInformation.objects.create(user=user, name=name, email=email,
-                                                            phone_number=phone_number, order=order)
-    shipping_address = ShippingAddress.objects.create(contact_information=contact_information, order=order,
-                                                      address=address, city=city)
+    return render(request, 'cart/payment.html')
 
-    context = {'order': order, 'contact_information': contact_information, 'shipping_address': shipping_address}
-    return render(request, 'cart/payment.html', context)
->>>>>>> c1c5161cd12b0f2b0fa576904957b73d56b26b56
+
+def redirect_view(request):
+    response = redirect('/redirect-success/')
+    return response
