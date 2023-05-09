@@ -69,6 +69,39 @@
                 <p>Your cart is empty.</p>
                 {% endif %}
 
+                {% if order_items_offer %}
+                {% for item in order_items_offer %}
+
+
+                    <div class="cart-row">
+
+                <div style="flex:2"><p>{{ item.offer.name }}</p></div>
+                    <div style="flex:1"><p>{{ item.offer.offer_price}}</p></div>
+                <div style="flex:1">
+                    <p class="quantity">{{ item.quantity }}</p>
+                    <div class="quantity">
+                        <img data-pizza="{{ item.offer.id }}" data-action="add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
+                        <img data-pizza="{{ item.offer.id }}" data-action="remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                    </div>
+                    <button class="delete update-cart" data-pizza="{{ item.offer.id }}" data-action="delete">Delete</button>
+
+                <br>
+                </div>
+
+
+
+
+                <p></p>
+                </div>
+
+
+                {% endfor %}
+                {% else %}
+
+
+                <p>Your cart is empty.</p>
+                {% endif %}
+
                 </div>
             <a style="float: right; margin:5px" class="btn btn-succes" href="checkout.html" >Checkout</a>
 			</div>
