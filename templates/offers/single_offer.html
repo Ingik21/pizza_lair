@@ -13,7 +13,7 @@
         {% if user.is_authenticated %}
     {% endif %}
     </a>
-    <button>Add to cart</button>
+    <button data-offer="{{offer.id}}" data-action="add" class="update-offer">Add to cart</button>
 {% endif %}
 {% if offer.id == 5 %}
     <div class="offerImage">
@@ -26,7 +26,11 @@
 
 </a>
 
+<<<<<<< HEAD
 <button data-offer="{{ offer.id }}" data-action="add-offer" class="update-cart-offer">Add to cart</button>
+=======
+<button data-offer="{{offer.id}}" data-action="add" class="update-offer">Add to cart</button>
+>>>>>>> master
 
     <a href="/offers/2f1">
         <button>Get 2f1 pizzas right now</button>

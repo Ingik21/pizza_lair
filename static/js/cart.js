@@ -9,7 +9,7 @@ var updateBtns = document.getElementsByClassName('update-cart')
 
 for (i = 0; i < updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function() {
-        var pizzaId = this.dataset.pizza
+        var pizzaId = this.dataset.pizza || null
         var action = this.dataset.action
         console.log('pizzaId:', pizzaId, 'Action:', action)
             console.log('USER', user)
@@ -43,11 +43,13 @@ function updateUserOrder(pizzaId, action) {
 }
 
 
-var updateBtns2 = document.getElementsByClassName('update-cart-offer')
+var updateBtns2 = document.getElementsByClassName('update-offer')
+
+console.log(updateBtns2)
 
 for (i = 0; i < updateBtns2.length; i++){
     updateBtns2[i].addEventListener('click', function() {
-        var offerId = this.dataset.offer
+        var offerId = this.dataset.offer || null
         var action = this.dataset.action
         console.log('offerId:', offerId, 'Action:', action)
             console.log('USER', user)
@@ -61,7 +63,7 @@ for (i = 0; i < updateBtns2.length; i++){
 
 function updateUserOrderOffer(offerId, action) {
     console.log('User is logged in, sending data...')
-    var url = '/cart/update_item_offer/'
+    var url = '/cart/update_item/'
 
     fetch(url, {
         method: 'POST',
@@ -76,6 +78,7 @@ function updateUserOrderOffer(offerId, action) {
     })
     .then((data) => {
         console.log('data:', data)
+        location.reload()
     })
 }
 

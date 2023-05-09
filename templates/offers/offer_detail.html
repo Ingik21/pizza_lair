@@ -12,6 +12,7 @@
     <p></p>
     {% if user.is_authenticated %}
      <button data-offer="{{ offer.id }}" data-action="add" class="update-cart-offer">Add to cart</button>
+     <button data-offer="{{offer.id}}" data-action="add" class="update-offer">Add to cart</button>
     {% endif %}
     </div>
 {% endblock %}
