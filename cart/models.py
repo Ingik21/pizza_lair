@@ -7,11 +7,6 @@ from user.models import Profile
 # Create your models here.
 
 
-
-
-
-
-
 class Order(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
@@ -20,7 +15,6 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
-
 
     @property
     def get_cart_total(self):
@@ -33,6 +27,7 @@ class Order(models.Model):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
         return total
+
 
 class OrderItem(models.Model):
     pizza = models.ForeignKey(Pizza, on_delete=models.SET_NULL, blank=True, null=True)
@@ -49,3 +44,19 @@ class OrderItem(models.Model):
     def get_items(self):
         total = self.quantity
         return total
+
+
+class ContactInformation(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
+    name = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+    phone_number = models.CharField(max_length=200, null=True)
+
+
+class ShippingAddress(models.Model):
+    contact_information = models.ForeignKey(ContactInformation, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    zipcode = models.CharField(max_length=200, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)

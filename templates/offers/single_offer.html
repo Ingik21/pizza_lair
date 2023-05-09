@@ -4,9 +4,18 @@
     <img src="{{ offer.offer_image }}" alt="Image of pizzas" class="offerImage">
         </div>
     <h4>{{ offer.name }}</h4>
+    {% if offer.offer_price > 1 %}
     <p>{{ offer.offer_price }} ISK</p>
+    {% else %}
+    <p>An offer you can't refuse</p>
+    {% endif %}
         {% if user.is_authenticated %}
-     <button>Add to cart</button>
+
     {% endif %}
 </a>
+{% if offer.offer_price > 1 %}
+<button>Add to cart</button>
+    {% else %}
+<button>SELECT NOW!</button>
+{% endif %}
 </div>

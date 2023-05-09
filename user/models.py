@@ -9,3 +9,5 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     favorite_pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, blank=True, null=True)
     image = models.CharField(max_length=9999, blank=True, null=True)
+
+

@@ -133,8 +133,19 @@ a.navbar-brand {
     height: 100%;
 }
 
+.cart-row-checkout{
+    display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+}
 
+.check{
 
+    display: flex;
+    flex-direction: column;
+}
 
 .cart-row{
     width: 100%;
@@ -174,6 +185,8 @@ a.navbar-brand {
 	border-radius: 4px;
 	padding: 10px;
 }
+
+
 
 
 @media screen and (max-width: 1199px) {
