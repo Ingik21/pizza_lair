@@ -61,7 +61,7 @@ class ContactInformation(models.Model):
     name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
     phone_number = models.CharField(max_length=200, null=True)
-
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 
 class ShippingAddress(models.Model):
     contact_information = models.ForeignKey(ContactInformation, on_delete=models.SET_NULL, blank=True, null=True)

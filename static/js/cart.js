@@ -43,8 +43,6 @@ function updateUserOrder(pizzaId, action) {
 }
 
 
-
-<<<<<<< HEAD
 var updateBtns2 = document.getElementsByClassName('update-cart-offer')
 
 for (i = 0; i < updateBtns2.length; i++){
@@ -83,7 +81,7 @@ function updateUserOrderOffer(offerId, action) {
 
 
 
-=======
+
 /* Write a function that listens for a click on the form-button in checkout.html, collects the necessary information and redirects to the payment page */
 
 function checkoutForm(){
@@ -119,3 +117,5 @@ function checkoutForm(){
 >>>>>>> master
 
 
+=======
+>>>>>>> c1c5161cd12b0f2b0fa576904957b73d56b26b56
