@@ -40,3 +40,12 @@ INSERT INTO pizza_pizzaimage(pizza_id, image) VALUES (11, 'https://pizza.az/uplo
 INSERT INTO pizza_pizzaimage(pizza_id, image) VALUES (12, 'https://pizza.az/upload/iblock/37e/37eb63cda8f0ffca5b732896c3780187.png');
 
 INSERT INTO offer_offer (name, offer_image, offer_price) VALUES ('2f1 offer, only pay for the more expensive on', 'https://pizza.az/upload/iblock/2ab/2ab979936a45e3d9007aa2e7bfce201d.png', 0.0);
+
+select *
+from cart_orderitemoffer;
+
+DELETE FROM cart_shippingaddress
+WHERE id > 1;
+
+DELETE FROM cart_contactinformation
+WHERE id = 1;

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+
+<p>Welcome to payments</p>
+   <p>
+
+{{ order.get_cart_total }}
+   {{ order.get_cart_items }}
+   {{ shipping_info.id }}
+   {{ contact_info.name }}
+
+</p>
+
+{% endblock %}

@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="box-element">
-                <a class="btn btn-outline-dark" href="/pizza/menu">&#x2190;Continue Shopping</a>
+                <a class="btn btn-outline-dark" href="/pizza">&#x2190;Continue Shopping</a>
 			</div>
 
 			<br>
@@ -60,38 +60,31 @@
                 <p></p>
                 </div>
 
-            {% endfor %}
-            {% else %}
+                <div style="flex:1"><p>${{ item.get_total }}</p></div>
+
+                {% endfor %}
+                {% else %}
 
 
-            <p>Your cart is empty.</p>
-            {% endif %}
-
-            <div class="box-element">
-                <div class="cart-row-offer">
-                    <div style="flex:2" ></div>
-                    <div style="flex:2" ><strong>Product</strong></div>
-                    <div style="flex:1" ><strong>Price</strong></div>
-                    <div style="flex:1" ><strong>Quantity</strong></div>
-                    <div style="flex:1" ><strong>Total</strong></div>
-                </div>
-
+                <p>Your cart is empty.</p>
+                {% endif %}
 
                 {% if order_items_offer %}
                 {% for item in order_items_offer %}
 
-                    <div class="cart-row-offer">
-                <div style="flex:2"><img class="row-image" src="{{ item.offer.offer_image }}"></div>
+
+                    <div class="cart-row">
+                    <div style="flex:2"><img class="row-image" src="{{ item.offer.offer_image}}"></div>
 
                 <div style="flex:2"><p>{{ item.offer.name }}</p></div>
-                    <div style="flex:1"><p>{{ item.offer.offer_price }}</p></div>
+                    <div style="flex:1"><p>{{ item.offer.offer_price}}</p></div>
                 <div style="flex:1">
                     <p class="quantity">{{ item.quantity }}</p>
                     <div class="quantity">
-                        <img data-offer="{{ item.offer.id }}" data-action="add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
-                        <img data-offer="{{ item.offer.id }}" data-action="remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                        <img data-pizza="{{ item.offer.id }}" data-action="add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
+                        <img data-pizza="{{ item.offer.id }}" data-action="remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
                     </div>
-                    <button class="delete update-cart" data-offer="{{ item.offer.id }}" data-action="delete">Delete</button>
+                    <button class="delete update-cart" data-pizza="{{ item.offer.id }}" data-action="delete">Delete</button>
 
                 <br>
                 </div>
@@ -102,7 +95,6 @@
                 <p></p>
                 </div>
 
-                <div style="flex:1"><p>${{ item.get_total }}</p></div>
 
                 {% endfor %}
                 {% else %}
@@ -112,7 +104,7 @@
                 {% endif %}
 
                 </div>
-            <a style="float: right; margin:5px" class="btn btn-succes" href="" >Checkout</a>
+            <a style="float: right; margin:5px" class="btn btn-succes" href="checkout" >Checkout</a>
 			</div>
 		</div>
 {% endblock content %}
