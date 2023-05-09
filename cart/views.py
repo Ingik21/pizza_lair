@@ -84,17 +84,9 @@ def update_item_offer(request):
     if order_item_offer.quantity <= 0:
         order_item_offer.delete()
 
-<<<<<<< HEAD
 
-    return JsonResponse({'message': 'Item was added', 'name': order_item_offer.offer.name, 'id': order_item_offer.offer.id}, safe=False)
-
-
-
-
-=======
     return JsonResponse(
         {'message': 'Item was added', 'name': order_item_offer.offer.name, 'id': order_item_offer.offer.id}, safe=False)
->>>>>>> master
 
 
 @login_required
@@ -111,15 +103,7 @@ def cart(request, url="cart/index.html"):
     print(order_items)
     print(order_items_offer.__dict__)
 
-<<<<<<< HEAD
-
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
-
-=======
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
-
-    context = {'order_items': order_items, 'order': order}
->>>>>>> master
 
     return render(request, url, context)
 
