@@ -6,7 +6,8 @@
     <h4>{{ offer.name }}</h4>
     <p>{{ offer.offer_price }} ISK</p>
         {% if user.is_authenticated %}
-     <button>Add to cart</button>
     {% endif %}
 </a>
+
+<button data-offer="{{ offer.id }}" data-action="add-offer" class="update-cart-offer">Add to cart</button>
 </div>

@@ -1,5 +1,6 @@
 from django.db import models
 
+from offer.models import Offer
 from pizza.models import Pizza
 from user.models import Profile
 
@@ -40,6 +41,9 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+
+
+
     @property
     def get_total(self):
         total = self.pizza.base_price * self.quantity
@@ -49,3 +53,12 @@ class OrderItem(models.Model):
     def get_items(self):
         total = self.quantity
         return total
+
+
+
+
+class OrderItemOffer(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
