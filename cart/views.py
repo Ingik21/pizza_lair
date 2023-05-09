@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import json
 
-from cart.models import Order, OrderItem
+from cart.models import Order, OrderItem, ContactInformation, ShippingAddress
 from pizza.models import Pizza
 from user.models import Profile
 
@@ -64,3 +64,19 @@ def cart(request, url="cart/index.html"):
 def checkout(request):
     return cart(request, 'cart/checkout.html')
 
+
+def payment(request):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    phone_number = request.POST.get('phone_number')
+    address = request.POST.get('address')
+    city = request.POST.get('city')
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+    contact_information = ContactInformation.objects.create(user=user, name=name, email=email,
+                                                            phone_number=phone_number, order=order)
+    shipping_address = ShippingAddress.objects.create(contact_information=contact_information, order=order,
+                                                      address=address, city=city)
+
+    context = {'order': order, 'contact_information': contact_information, 'shipping_address': shipping_address}
+    return render(request, 'cart/payment.html', context)
