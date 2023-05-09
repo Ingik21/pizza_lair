@@ -13,7 +13,7 @@
         {% if user.is_authenticated %}
     {% endif %}
     </a>
-    <button>Add to cart</button>
+    <button data-offer="{{offer.id}}" data-action="add" class="update-offer">Add to cart</button>
 {% endif %}
 {% if offer.id == 5 %}
     <div class="offerImage">
@@ -23,14 +23,14 @@
     <p>{{ offer.offer_price }} ISK</p>
         {% if user.is_authenticated %}
     {% endif %}
-<<<<<<< HEAD
+
 </a>
 
-<button data-offer="{{ offer.id }}" data-action="add-offer" class="update-cart-offer">Add to cart</button>
-=======
+<button data-offer="{{offer.id}}" data-action="add" class="update-offer">Add to cart</button>
+
     <a href="/offers/2f1">
         <button>Get 2f1 pizzas right now</button>
     </a>
 {% endif %}
->>>>>>> master
+
 </div>
