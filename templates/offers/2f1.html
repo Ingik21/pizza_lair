@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <h1>Our special 2 for 1 offer!</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="pizza1">Choose pizza number 1:</label>
+      <select name="pizza1" id="pizza1">
+        {% for pizza in pizzas %}
+          <option value="{{ pizza.id }}">{{ pizza.name }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <label for="pizza2">Choose pizza number 2:</label>
+      <select name="pizza2" id="pizza2">
+        {% for pizza in pizzas %}
+          <option value="{{ pizza.id }}">{{ pizza.name }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <input type="submit" value="Get offer" class="update-btn">
+    </form>
+
+{% endblock %}

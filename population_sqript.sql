@@ -39,3 +39,4 @@ INSERT INTO pizza_pizzaimage(pizza_id, image) VALUES (10, 'https://pizza.az/uplo
 INSERT INTO pizza_pizzaimage(pizza_id, image) VALUES (11, 'https://pizza.az/upload/iblock/da5/da50df37c3a5ba08ea4689aad0cf7714.jpg');
 INSERT INTO pizza_pizzaimage(pizza_id, image) VALUES (12, 'https://pizza.az/upload/iblock/37e/37eb63cda8f0ffca5b732896c3780187.png');
 
+INSERT INTO offer_offer (name, offer_image, offer_price) VALUES ('2f1 offer, only pay for the more expensive on', 'https://pizza.az/upload/iblock/2ab/2ab979936a45e3d9007aa2e7bfce201d.png', 0.0);
