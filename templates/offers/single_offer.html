@@ -9,7 +9,7 @@
         {% if user.is_authenticated %}
     {% endif %}
     </a>
-    <button>Add to cart</button>
+    <button data-offer="{{offer.id}}" data-action="add" class="update-cart">Add to cart</button>
 {% endif %}
 {% if offer.id == 5 %}
     <div class="offerImage">
