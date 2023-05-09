@@ -1,5 +1,21 @@
 <div class="wellOffer">
+{% if offer.id != 5 %}
     <a href="/offers/{{ offer.id }}">
+    <div class="offerImage">
+    <img src="{{ offer.offer_image }}" alt="Image of pizzas" class="offerImage">
+        </div>
+    <h4>{{ offer.name }}</h4>
+    {% if offer.offer_price > 1 %}
+    <p>{{ offer.offer_price }} ISK</p>
+    {% else %}
+    <p>An offer you can't refuse</p>
+    {% endif %}
+        {% if user.is_authenticated %}
+    {% endif %}
+    </a>
+    <button>Add to cart</button>
+{% endif %}
+{% if offer.id == 5 %}
     <div class="offerImage">
     <img src="{{ offer.offer_image }}" alt="Image of pizzas" class="offerImage">
         </div>
@@ -7,7 +23,14 @@
     <p>{{ offer.offer_price }} ISK</p>
         {% if user.is_authenticated %}
     {% endif %}
+<<<<<<< HEAD
 </a>
 
 <button data-offer="{{ offer.id }}" data-action="add-offer" class="update-cart-offer">Add to cart</button>
+=======
+    <a href="/offers/2f1">
+        <button>Get 2f1 pizzas right now</button>
+    </a>
+{% endif %}
+>>>>>>> master
 </div>

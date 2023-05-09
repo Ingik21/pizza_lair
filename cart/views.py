@@ -9,11 +9,11 @@ from pizza.models import Pizza
 from user.models import Profile
 
 
-
 # Create your views here.
 @login_required
 def index(request):
     return cart(request)
+
 
 def update_item(request):
     data = json.loads(request.body)
@@ -21,7 +21,6 @@ def update_item(request):
     action = data['action']
     print('Action:', action)
     print('Pizza:', pizzaId)
-
 
     user = request.user.profile
     pizza = Pizza.objects.get(id=pizzaId)
@@ -38,14 +37,12 @@ def update_item(request):
     elif action == 'delete':
         order_item.quantity = 0
 
-
     order_item.save()
-
-
 
     if order_item.quantity <= 0:
         order_item.delete()
 
+<<<<<<< HEAD
 
 
     return JsonResponse({'message': 'Item was added',  'quantity': order_item.quantity, 'name': order_item.pizza.name, 'price': order_item.pizza.base_price},safe=False)
@@ -82,10 +79,14 @@ def update_item_offer(request):
 
     return JsonResponse({'message': 'Item was added', 'name': order_item_offer.offer.name, 'id': order_item_offer.offer.id}, safe=False)
 
+=======
+    return JsonResponse({'message': 'Item was added', 'quantity': order_item.quantity, 'name': order_item.pizza.name,
+                         'price': order_item.pizza.base_price}, safe=False)
+>>>>>>> master
 
 
 @login_required
-def cart(request):
+def cart(request, url="cart/index.html"):
     print("test")
 
     user = request.user.profile
@@ -99,15 +100,22 @@ def cart(request):
     print(order_items)
     print(order_items_offer.__dict__)
 
+<<<<<<< HEAD
 
 
 
 
 
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
+=======
+    context = {'order_items': order_items, 'order': order}
+>>>>>>> master
+
+    return render(request, url, context)
 
 
-    return render(request, 'cart/index.html', context)
+def checkout(request):
+    return cart(request, 'cart/checkout.html')
 
 
 
