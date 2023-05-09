@@ -4,10 +4,11 @@
 
 <p>Welcome to payments</p>
    <p>
-    TC:{{ order.get_total }}
 
-   {{ order_items.get_total }}
-
+{{ order.get_cart_total }}
+   {{ order.get_cart_items }}
+   {{ shipping_info.id }}
+   {{ contact_info.name }}
 
 </p>
 

@@ -43,3 +43,9 @@ INSERT INTO offer_offer (name, offer_image, offer_price) VALUES ('2f1 offer, onl
 
 select *
 from cart_orderitemoffer;
+
+DELETE FROM cart_shippingaddress
+WHERE id > 1;
+
+DELETE FROM cart_contactinformation
+WHERE id = 1;
