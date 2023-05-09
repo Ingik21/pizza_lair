@@ -94,8 +94,6 @@ def cart(request, url="cart/index.html"):
 
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
 
-    context = {'order_items': order_items, 'order': order}
-
     return render(request, url, context)
 
 
@@ -104,14 +102,22 @@ def checkout(request):
 
 
 def payment(request):
-    return render(request, 'cart/payment.html')
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+    shipping_address = ShippingAddress.objects.first()
+    contact_information = ContactInformation.objects.first()
+    order_items = order.orderitem_set.all()
+    order_items_offer = order.orderitemoffer_set.all()
+    shipping_info = shipping_address.__dict__
+    contact_info = contact_information.__dict__
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'shipping_info': shipping_info, 'contact_info': contact_info}
+    return render(request, 'cart/payment.html', context)
 
-<<<<<<< HEAD
+
 
 def redirect_view(request):
     response = redirect('/redirect-success/')
     return response
-=======
+
     context = {'order': order, 'contact_information': contact_information, 'shipping_address': shipping_address}
     return render(request, 'cart/payment.html', context)
->>>>>>> 5d958650c2dca2722e1ebcb4d9fdd9824e93516b

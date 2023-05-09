@@ -85,36 +85,35 @@ function updateUserOrderOffer(offerId, action) {
 /* Write a function that listens for a click on the form-button in checkout.html, collects the necessary information and redirects to the payment page */
 
 function checkoutForm(){
-    const form = document.getElementById('checkout-form');
+    const form = document.getElementById('form-button');
     form.addEventListener('submit', function(e){
         e.preventDefault()
         console.log('Form submitted...')
-        var name = document.getElementById('name').value
-        var email = document.getElementById('email').value
-        var address = document.getElementById('address').value
-        var city = document.getElementById('city').value
-        var state = document.getElementById('state').value
-        var zipcode = document.getElementById('zipcode').value
-        console.log(name, email, address, city, state, zipcode)
-        var url = '/cart/checkout/'
+        let name = document.getElementsByName('name').item(0).value
+        let email = document.getElementsByName('email').item(0).value
+        let address = document.getElementsByName('address').item(0).value
+        let city = document.getElementsByName('city').item(0).value
+        let zipcode = document.getElementsByName('zipcode').item(0).value
+        console.log(name, email, address, city, zipcode)
+        let url = '/cart/payment/'
         fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken' : csrftoken
             },
-            body:JSON.stringify({'form': form, 'name': name, 'email': email, 'address': address, 'city': city, 'state': state, 'zipcode': zipcode})
+            body:JSON.stringify({'form': form, 'name': name, 'email': email, 'address': address, 'city': city, 'zipcode': zipcode})
         })
         .then((response) => {
             return response.json()
         })
         .then((data) => {
             console.log('data:', data)
-            location.reload()
+
         })
     })
 }
-
+/*
 function getContactInfo():{name: string, email: string, address: string, city: string, state: string, zipcode: string}{
     console.log("You're here")
 
@@ -124,10 +123,23 @@ function getContactInfo():{name: string, email: string, address: string, city: s
     const email = document.getElementById('email').value;
     const address = document.getElementById('address').value;
     const city = document.getElementById('city').value;
-    const state = document.getElementById('state').value;
     const zipcode = document.getElementById('zipcode').value;
-
+    let url = '/cart/payment/'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken' : csrftoken
+            },
+            body:JSON.stringify({ 'name': name, 'email': email, 'address': address, 'city': city, 'zipcode': zipcode})
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            console.log('data:', data)
     console.log("Hello test")
-    console.log(name, email, address, city, state, zipcode)
-    return name, email, address, city, state, zipcode
-}
+    console.log(name, email, address, city, zipcode)
+    return name, email, address, city, zipcode
+})
+}*/

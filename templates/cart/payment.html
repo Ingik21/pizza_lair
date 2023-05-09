@@ -3,9 +3,11 @@
 {% block content %}
 
 <p>Welcome to payments</p>
-   <p> {{ contact_information.name }}
-    {{ contact_information.email }}
-    {{ contact_information.phone_number }}
+   <p>
+    TC:{{ order.get_total }}
+
+   {{ order_items.get_total }}
+
 
 </p>
 

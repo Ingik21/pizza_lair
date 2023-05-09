@@ -21,10 +21,6 @@ def get_offer_by_id(request, id):
         'offer': get_object_or_404(Offer, pk=id)})
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d958650c2dca2722e1ebcb4d9fdd9824e93516b
 def two_for_one_offer(request):
     pizzas = pizza.objects.all()
     context = {'pizzas': pizzas}
