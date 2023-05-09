@@ -3,9 +3,13 @@
 {% block content %}
 
 <p>Welcome to payments</p>
-    {{ contact_information.name }}
-    {{ contact_information.email }}
-    {{ contact_information.phone }}
+   <p>
 
+{{ order.get_cart_total }}
+   {{ order.get_cart_items }}
+   {{ shipping_info.id }}
+   {{ contact_info.name }}
+
+</p>
 
 {% endblock %}
