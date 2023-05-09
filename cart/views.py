@@ -106,7 +106,12 @@ def checkout(request):
 def payment(request):
     return render(request, 'cart/payment.html')
 
+<<<<<<< HEAD
 
 def redirect_view(request):
     response = redirect('/redirect-success/')
     return response
+=======
+    context = {'order': order, 'contact_information': contact_information, 'shipping_address': shipping_address}
+    return render(request, 'cart/payment.html', context)
+>>>>>>> 5d958650c2dca2722e1ebcb4d9fdd9824e93516b
