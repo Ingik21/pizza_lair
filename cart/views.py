@@ -107,25 +107,23 @@ def cart(request, url="cart/index.html"):
 def checkout(request):
     user = request.user.profile
     order = Order.objects.get(user=user, complete=False)
-
+    contact, created = ContactInformation.objects.get_or_create(order=order)
+    shipping, created = ShippingAddress.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact, 'shipping': shipping}
     return render(request, 'cart/checkout.html', context)
 
 
 def payment(request):
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user, complete=False)
-    shipping_address = ShippingAddress.objects.get(order=order)
-    contact_information = ContactInformation.objects.get(order=order)
+    contact, created = ContactInformation.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
-    shipping_info = shipping_address.__dict__
-    contact_info = contact_information.__dict__
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
-               'shipping_info': shipping_info, 'contact_info': contact_info}
+
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,'contact': contact}
     return render(request, 'cart/payment.html', context)
 
 

@@ -88,11 +88,12 @@ function updateUserOrderOffer(offerId, action) {
 /* Write a function that listens for a click on the form-button in checkout.html, collects the necessary information and redirects to the payment page */
 
 function checkoutForm(){
-    const form = document.getElementById('form-button');
+    const form = document.getElementById('form');
     form.addEventListener('submit', function(e){
         e.preventDefault()
         console.log('Form submitted...')
-        let name = document.getElementsByName('name').item(0).value
+        document.getElementById('form-button').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
         let email = document.getElementsByName('email').item(0).value
         let address = document.getElementsByName('address').item(0).value
         let city = document.getElementsByName('city').item(0).value
@@ -115,6 +116,30 @@ function checkoutForm(){
 
         })
     })
+}
+
+function sumbitFormData(){
+    console.log('Data is being submitted')
+    var userFormData = {
+        'name': null,
+        'email': null,
+        'address': null,
+        'city': null,
+        'zipcode': null,
+    }
+    let form = document.getElementById('form');
+    var shippingInfo = {
+        'name': form.name.value,
+        'email': form.email.value,
+        'address': form.address.value,
+        'city': form.city.value,
+        'zipcode': form.zipcode.value,
+    }
+    for (var i = 0; i < form.length - 1; i++){
+        userFormData[form[i].name] = form[i].value
+    }
+    console.log('userFormData', userFormData)
+    return userFormData
 }
 /*
 function getContactInfo():{name: string, email: string, address: string, city: string, state: string, zipcode: string}{
