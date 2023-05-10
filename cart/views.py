@@ -148,7 +148,7 @@ def create_contact(request):
             contact_ = form.save()
             contact_.order_id = order.id
             contact_.save()
-            return redirect('payment')
+            return redirect('create_payment')
     else:
         form = ContactInformationForm()
     return render(request, 'cart/checkout.html', {'form': form})
