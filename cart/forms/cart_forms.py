@@ -6,7 +6,7 @@ from cart.models import ContactInformation, ShippingAddress
 class ContactInformationForm(ModelForm):
     class Meta:
         model = ContactInformation
-        exclude = ['id', 'order_id', 'user_id']
+        exclude = ['id', 'user_id']
         widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
             'phone': widgets.TextInput(attrs={'class': 'form-control'}),

@@ -107,7 +107,7 @@ def cart(request, url="cart/index.html"):
 
 def checkout(request):
     user = request.user.profile
-    order = Order.objects.get(user=user, complete=False)
+    order, created = Order.objects.get_or_create(user=user, complete=False)
     contact, created = ContactInformation.objects.get_or_create(order=order)
     shipping, created = ShippingAddress.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
@@ -138,12 +138,17 @@ def redirect_view(request):
 
 
 def create_contact(request):
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+    order_items = order.orderitem_set.all()
+
     if request.method == 'POST':
         form = ContactInformationForm(data=request.POST)
         if form.is_valid():
             contact_ = form.save()
-
+            contact_.order_id = order.id
+            contact_.save()
             return redirect('payment')
     else:
         form = ContactInformationForm()
-    return render(request, 'cart/checkout.html', {'form': form})
+    return render(request, 'cart/checkout.html', {'form': form, 'order': order})
