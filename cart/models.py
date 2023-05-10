@@ -6,6 +6,9 @@ from pizza.models import Pizza
 from user.models import Profile
 from offer.models import Offer
 
+from django import forms
+
+
 # Create your models here.
 
 class Order(models.Model):
@@ -22,12 +25,16 @@ class Order(models.Model):
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
         total = sum([item.get_total for item in orderitems])
+        orderitemsoffers = self.orderitemoffer_set.all()
+        total += sum([item.get_total for item in orderitemsoffers])
         return total
 
     @property
     def get_cart_items(self):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
+        orderitemsoffers = self.orderitemoffer_set.all()
+        total += sum([item.quantity for item in orderitemsoffers])
         return total
 
 class OrderItem(models.Model):
@@ -65,6 +72,18 @@ class OrderItemOffer(models.Model):
         total = self.quantity
         return total
 
+    @property
+    def get_total(self):
+        total = self.offer.offer_price * self.quantity
+        return total
+
+    @property
+    def get_items(self):
+        total = self.quantity
+        return total
+
+
+
 
 class ContactInformation(models.Model):
     name = models.CharField(max_length=200)
@@ -92,3 +111,10 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=200, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+
+
+class ContactInformationForm(forms.ModelForm):
+    class Meta:
+        model = ContactInformation
+        fields = ['name', 'email', 'phone_number']
