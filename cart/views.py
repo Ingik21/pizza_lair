@@ -3,10 +3,16 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 import json
 
+from cart.forms.cart_forms import ContactInformationForm
+from cart.forms.payment_form import PaymentForm
 from offer.models import Offer
+<<<<<<< HEAD
 from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, ContactInformationForm
+=======
+from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, Payment
+>>>>>>> master
 from pizza.models import Pizza
-from user.models import Profile
+
 
 
 # Create your views here.
@@ -102,8 +108,9 @@ def cart(request, url="cart/index.html"):
 
 def checkout(request):
     user = request.user.profile
-    order = Order.objects.get(user=user, complete=False)
-
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+    contact, created = ContactInformation.objects.get_or_create(order=order)
+    shipping, created = ShippingAddress.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
@@ -128,6 +135,7 @@ def checkout(request):
 
 def payment(request):
     user = request.user.profile
+<<<<<<< HEAD
     order, created = Order.objects.get_or_create(user=user, complete=False)
 
 
@@ -136,6 +144,14 @@ def payment(request):
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
+=======
+    order, created = Order.objects.get_or_create(user=user.id, complete=False)
+    contact, created = ContactInformation.objects.get_or_create(order=order)
+    order_items = order.orderitem_set.all()
+    order_items_offer = order.orderitemoffer_set.all()
+
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact}
+>>>>>>> master
     return render(request, 'cart/payment.html', context)
 
 
@@ -145,3 +161,36 @@ def redirect_view(request):
 
     context = {'order': order, 'contact_information': contact_information, 'shipping_address': shipping_address}
     return render(request, 'cart/payment.html', context)
+
+
+def create_contact(request):
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+    order_items = order.orderitem_set.all()
+
+    if request.method == 'POST':
+        form = ContactInformationForm(data=request.POST)
+        if form.is_valid():
+            contact_ = form.save()
+            contact_.order_id = order.id
+            contact_.save()
+            return redirect('create_payment')
+    else:
+        form = ContactInformationForm()
+    return render(request, 'cart/checkout.html', {'form': form})
+
+
+def create_payment(request):
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+
+    if request.method == 'POST':
+        form = PaymentForm(data=request.POST)
+        if form.is_valid():
+            payment_ = form.save()
+            payment_.order_id = order.id
+            payment_.save()
+            return redirect('review')
+    else:
+        form = PaymentForm()
+    return render(request, 'cart/payment.html', {'form': form})

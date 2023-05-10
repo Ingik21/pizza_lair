@@ -1,14 +1,18 @@
 from django.db import models
 
-from offer.models import Offer
 from pizza.models import Pizza
 from user.models import Profile
-
+from offer.models import Offer
 
 from django import forms
 
 
 # Create your models here.
+
+
+
+
+
 
 
 class Order(models.Model):
@@ -19,6 +23,7 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+
 
     @property
     def get_cart_total(self):
@@ -36,16 +41,11 @@ class Order(models.Model):
         total += sum([item.quantity for item in orderitemsoffers])
         return total
 
-
 class OrderItem(models.Model):
     pizza = models.ForeignKey(Pizza, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-
-
-
-
 
     @property
     def get_total(self):
@@ -59,13 +59,22 @@ class OrderItem(models.Model):
 
 
 
-
 class OrderItemOffer(models.Model):
+
     offer = models.ForeignKey(Offer, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def get_total(self):
+        total = self.offer.offer_price * self.quantity
+        return total
+
+    @property
+    def get_items(self):
+        total = self.quantity
+        return total
 
     @property
     def get_total(self):
@@ -81,11 +90,21 @@ class OrderItemOffer(models.Model):
 
 
 class ContactInformation(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    email = models.CharField(max_length=200, null=True, blank=True)
-    phone_number = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    zipcode = models.CharField(max_length=200, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+
+
+class Payment(models.Model):
+    card_number = models.CharField(max_length=200)
+    expiration_date = models.CharField(max_length=200)
+    CVC = models.CharField(max_length=200)
+
 
 class ShippingAddress(models.Model):
     contact_information = models.ForeignKey(ContactInformation, on_delete=models.SET_NULL, blank=True, null=True)

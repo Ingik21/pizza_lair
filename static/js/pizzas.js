@@ -3,7 +3,7 @@ $(document).ready(function () {
         e.preventDefault();
         var searchText = $('#search-box').val();
         $.ajax({
-            url: '/pizza/menu?search_filter=' + searchText,
+            url: '/pizza?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
                 var newHtml = resp.data.map(d => {
@@ -49,7 +49,7 @@ document.getElementById("order-by-name").addEventListener("click", function () {
 * */
 
 document.getElementById("reset").addEventListener("click", function () {
-    fetch('/pizza/menu')
+    fetch('/?category=none')
         .then(response => response.text())
         .then(data => {
         document.getElementsByTagName("body")[0].innerHTML = data;

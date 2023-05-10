@@ -48,4 +48,3 @@ def two_for_one_offer(request):
 
     return render(request, 'offers/2f1.html', context)
 
-

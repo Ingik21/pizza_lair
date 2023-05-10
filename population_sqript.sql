@@ -45,7 +45,7 @@ select *
 from cart_orderitemoffer;
 
 DELETE FROM cart_shippingaddress
-WHERE id > 1;
+WHERE id = 1;
 
 DELETE FROM cart_contactinformation
-WHERE id = 1;
+WHERE id > 0;
