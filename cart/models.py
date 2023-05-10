@@ -80,6 +80,13 @@ class ContactInformation(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 
+
+class Payment(models.Model):
+    card_number = models.IntegerField()
+    expiration_date = models.DateTimeField()
+    CVC = models.IntegerField()
+
+
 class ShippingAddress(models.Model):
     contact_information = models.ForeignKey(ContactInformation, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)

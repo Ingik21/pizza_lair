@@ -2,14 +2,15 @@
 
 {% block content %}
 
-<p>Welcome to payments</p>
-   <p>
 
-{{ order.get_cart_total }}
-   {{ order.get_cart_items }}
-   {{ shipping_info.id }}
-   {{ contact_info.name }}
 
-</p>
+
+        <form class="form form-horizontal" method="post" >
+                    {% csrf_token %}
+                    {{ form }}
+    <input type="submit" value="Create" class="btn btn-primary" style="clear:both; margin: 10px 0"/>
+    </form>
+
+
 
 {% endblock %}
