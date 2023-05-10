@@ -71,10 +71,13 @@ class OrderItemOffer(models.Model):
 
 
 class ContactInformation(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
-    name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
-    phone_number = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    zipcode = models.CharField(max_length=200, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 
 class ShippingAddress(models.Model):
