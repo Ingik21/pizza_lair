@@ -49,3 +49,6 @@ WHERE id = 1;
 
 DELETE FROM cart_contactinformation
 WHERE id > 0;
+
+DELETE FROM cart_payment
+WHERE id > 0;

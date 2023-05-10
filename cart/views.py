@@ -1,16 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse
 import json
 
 from cart.forms.cart_forms import ContactInformationForm
 from cart.forms.payment_form import PaymentForm
 from offer.models import Offer
-<<<<<<< HEAD
-from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, ContactInformationForm
-=======
 from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, Payment
->>>>>>> master
 from pizza.models import Pizza
 
 
@@ -102,55 +98,36 @@ def cart(request, url="cart/index.html"):
     return render(request, url, context)
 
 
-
-
-
 def checkout(request):
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user, complete=False)
-    contact, created = ContactInformation.objects.get_or_create(order=order)
     shipping, created = ShippingAddress.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
-    contact_information, created = ContactInformation.objects.get_or_create(user=user, order=order)
-
-    print(contact_information)
     if request.method == 'POST':
-        form = ContactInformationForm(request.POST)
-        # Update the contact information fields with the submitted form data
-        contact_information.name = form.cleaned_data['name']
-        contact_information.email = request.POST.get('email')
-        contact_information.address = request.POST.get('phone')
-        contact_information.save()
+        form = ContactInformationForm(data=request.POST)
+        if form.is_valid():
+            contact_ = form.save()
+            contact_.order_id = order.id
+            contact_.save()
+            return redirect('create_payment')
+    else:
+        form = ContactInformationForm()
 
-        # Redirect the user to the order confirmation page
-        return HttpResponseRedirect('cart/payment/')
-
-
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact_information': contact_information}
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
+               'shipping': shipping, 'form': form}
     return render(request, 'cart/checkout.html', context)
 
 
 def payment(request):
     user = request.user.profile
-<<<<<<< HEAD
-    order, created = Order.objects.get_or_create(user=user, complete=False)
-
-
-
-
-    order_items = order.orderitem_set.all()
-    order_items_offer = order.orderitemoffer_set.all()
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
-=======
     order, created = Order.objects.get_or_create(user=user.id, complete=False)
     contact, created = ContactInformation.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact}
->>>>>>> master
     return render(request, 'cart/payment.html', context)
 
 
@@ -176,12 +153,15 @@ def create_contact(request):
             return redirect('create_payment')
     else:
         form = ContactInformationForm()
-    return render(request, 'cart/checkout.html', {'form': form, 'order_items': order_items, 'order': order})
+    return render(request, 'cart/checkout.html', {'form': form})
 
 
 def create_payment(request):
     user = request.user.profile
-    order, created = Order.objects.get_or_create(user=user, complete=False)
+    order, created = Order.objects.get_or_create(user=user.id, complete=False)
+    contact, created = ContactInformation.objects.get_or_create(order=order)
+    order_items = order.orderitem_set.all()
+    order_items_offer = order.orderitemoffer_set.all()
 
     if request.method == 'POST':
         form = PaymentForm(data=request.POST)
@@ -192,4 +172,18 @@ def create_payment(request):
             return redirect('review')
     else:
         form = PaymentForm()
-    return render(request, 'cart/payment.html', {'form': form})
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
+               'form': form, 'contact': contact}
+    return render(request, 'cart/payment.html', context)
+
+def review(request):
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user.id, complete=False)
+    order_items = order.orderitem_set.all()
+    order_items_offer = order.orderitemoffer_set.all()
+    payment_form = Payment.objects.get(order=order)
+    contact_form = ContactInformation.objects.get(order=order)
+
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
+               'payment_form': payment_form, 'contact_form': contact_form}
+    return render(request, 'cart/review.html', context)

@@ -3,7 +3,6 @@ from cart.models import Payment
 from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
 
 
-
 class PaymentForm(ModelForm):
     class Meta:
         model = Payment

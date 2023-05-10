@@ -1,16 +1,66 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>Review</h1>
+<div class="row">
+<div class="cola">
+
+<h2>Payment Information</h2>
+<ul>
+  <li><strong>Payment Method:</strong> {{ payment_form.payment_method }}</li>
+  <li><strong>Name on Card:</strong> {{ payment_form.name_on_card }}</li>
+  <li><strong>Card Number:</strong> {{ payment_form.card_number }}</li>
+  <li><strong>Expiration Date:</strong> {{ payment_form.expiration_date }}</li>
+  <li><strong>CVC:</strong> {{ payment_form.cvc }}</li>
+</ul>
+
+<h2>Contact Information</h2>
+<ul>
+  <li><strong>Name:</strong> {{ contact_form.name }}</li>
+  <li><strong>Email:</strong> {{ contact_form.email }}</li>
+  <li><strong>Phone:</strong> {{ contact_form.phone }}</li>
+  <li><strong>Address:</strong> {{ contact_form.address }}</li>
+  <li><strong>City:</strong> {{ contact_form.city }}</li>
+  <li><strong>State:</strong> {{ contact_form.state }}</li>
+  <li><strong>Zip Code:</strong> {{ contact_form.zip_code }}</li>
+</ul>
+
+			<br>
+
+<div class="summary">
+<div class="box-element" >
+				<a  class="btn btn-outline-dark" href="{% url 'cart-index' %}">&#x2190; Back to Cart</a>
+				<hr>
+				<h3>Order Summary</h3>
+				<hr>
+                {% for item in order_items %}
+				<div class="cart-row-checkout">
+
+					<div style="flex:2"><p>{{ item.pizza.name }}</p></div>
+					<div style="flex:1"><p>{{ item.pizza.base_price }}</p></div>
+					<div style="flex:1"><p>{{ item.quantity }}</p></div>
+				</div>
+                {% endfor %}
+            {% for item in order_items_offer %}
+				<div class="cart-row-checkout">
+
+					<div style="flex:2"><p>{{ item.offer.name }}</p></div>
+					<div style="flex:1"><p>{{ item.offer.offer_price }}</p></div>
+					<div style="flex:1"><p>{{ item.quantity }}</p></div>
+				</div>
+                {% endfor %}
+				<h5>Items:   {{ order.get_cart_items }}</h5>
+				<h5>Total:   {{ order.get_cart_total }}</h5>
+
+
+    </div>
+</div>
 
 
 
+</div>
 
-        <form class="form form-horizontal" method="POST" >
-                    {% csrf_token %}
-                    {{ form.as_p }}
-    <input type="submit" value="Create" class="btn btn-primary" style="clear:both; margin: 10px 0"/>
-    </form>
-
+</div>
 
 
 {% endblock %}

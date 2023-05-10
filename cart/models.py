@@ -53,8 +53,6 @@ class OrderItem(models.Model):
         total = self.quantity
         return total
 
-
-
 class OrderItemOffer(models.Model):
 
     offer = models.ForeignKey(Offer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -71,18 +69,6 @@ class OrderItemOffer(models.Model):
     def get_items(self):
         total = self.quantity
         return total
-
-    @property
-    def get_total(self):
-        total = self.offer.offer_price * self.quantity
-        return total
-
-    @property
-    def get_items(self):
-        total = self.quantity
-        return total
-
-
 
 
 class ContactInformation(models.Model):
@@ -102,6 +88,7 @@ class Payment(models.Model):
     card_number = CardNumberField()
     expiration_date = CardExpiryField()
     CVC = SecurityCodeField()
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 
 
 class ShippingAddress(models.Model):
@@ -112,9 +99,3 @@ class ShippingAddress(models.Model):
     zipcode = models.CharField(max_length=200, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-
-
-class ContactInformationForm(forms.ModelForm):
-    class Meta:
-        model = ContactInformation
-        fields = ['name', 'email', 'phone_number']
