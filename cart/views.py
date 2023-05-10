@@ -6,9 +6,8 @@ import json
 from cart.forms.cart_forms import ContactInformationForm
 from cart.forms.payment_form import PaymentForm
 from offer.models import Offer
-from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer
+from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, Payment
 from pizza.models import Pizza
-
 
 
 # Create your views here.
