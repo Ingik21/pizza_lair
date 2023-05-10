@@ -151,7 +151,7 @@ def create_contact(request):
             return redirect('create_payment')
     else:
         form = ContactInformationForm()
-    return render(request, 'cart/checkout.html', {'form': form})
+    return render(request, 'cart/checkout.html', {'form': form, 'order_items': order_items, 'order': order})
 
 
 def create_payment(request):
