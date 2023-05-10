@@ -6,7 +6,7 @@ import json
 from cart.forms.cart_forms import ContactInformationForm
 from cart.forms.payment_form import PaymentForm
 from offer.models import Offer
-from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer
+from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, Payment
 from pizza.models import Pizza
 
 
@@ -149,7 +149,7 @@ def create_contact(request):
             contact_ = form.save()
             contact_.order_id = order.id
             contact_.save()
-            return redirect('payment')
+            return redirect('create_payment')
     else:
         form = ContactInformationForm()
     return render(request, 'cart/checkout.html', {'form': form})

@@ -10,5 +10,6 @@ urlpatterns = [
     path('payment/', views.payment, name='payment'),
     path('redirect/', redirect_view),
     path('create_contact/', views.create_contact, name='create_contact'),
-    path('create_payment/', views.create_payment, name='create_payment')
+    path('create_payment/', views.create_payment, name='create_payment'),
+
 ]

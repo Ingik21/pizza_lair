@@ -82,9 +82,9 @@ class ContactInformation(models.Model):
 
 
 class Payment(models.Model):
-    card_number = models.IntegerField()
-    expiration_date = models.DateTimeField()
-    CVC = models.IntegerField()
+    card_number = models.CharField(max_length=200)
+    expiration_date = models.CharField(max_length=200)
+    CVC = models.CharField(max_length=200)
 
 
 class ShippingAddress(models.Model):
