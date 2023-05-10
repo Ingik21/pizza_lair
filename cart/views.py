@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
 
+from cart.forms.cart_forms import ContactInformationForm
 from offer.models import Offer
 from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer
 from pizza.models import Pizza
-from user.models import Profile
+
 
 
 # Create your views here.
@@ -112,18 +113,19 @@ def checkout(request):
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact, 'shipping': shipping}
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact,
+               'shipping': shipping}
     return render(request, 'cart/checkout.html', context)
 
 
 def payment(request):
     user = request.user.profile
-    order, created = Order.objects.get_or_create(user=user, complete=False)
+    order, created = Order.objects.get_or_create(user=user.id, complete=False)
     contact, created = ContactInformation.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,'contact': contact}
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact}
     return render(request, 'cart/payment.html', context)
 
 
@@ -133,3 +135,15 @@ def redirect_view(request):
 
     context = {'order': order, 'contact_information': contact_information, 'shipping_address': shipping_address}
     return render(request, 'cart/payment.html', context)
+
+
+def create_contact(request):
+    if request.method == 'POST':
+        form = ContactInformationForm(data=request.POST)
+        if form.is_valid():
+            contact_ = form.save()
+
+            return redirect('payment')
+    else:
+        form = ContactInformationForm()
+    return render(request, 'cart/checkout.html', {'form': form})
