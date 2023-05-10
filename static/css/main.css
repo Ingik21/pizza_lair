@@ -5,6 +5,11 @@
     margin-top: 20px;
 }
 
+.form-control{
+    width: 100%;
+
+}
+
 
 .container{
     margin-bottom: 60px;
@@ -146,10 +151,11 @@ a.navbar-brand {
     border-bottom: 1px solid #ececec;
 }
 
-.check{
-
+.summary{
+    width: 100%;
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 .cart-row{
@@ -179,12 +185,28 @@ a.navbar-brand {
     transition: .1s;
 }
 
+.cola{
+    display: flex;
+    flex-direction: row;
+}
+
 
 .chg-quantity:hover{
     opacity: .6;
 }
 
 .box-element{
+
+	box-shadow:hsl(0, 0%, 80%) 0 0 32px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.box-element-cart{
+    width: 60%;
+    justify-content: end;
+    align-items: end;
 	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
 	background-color: #fff;
 	border-radius: 4px;
@@ -192,6 +214,22 @@ a.navbar-brand {
 }
 
 
+
+#form-wrapper{
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-top: 20px;
+}
+
+#summary{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-top: 20px;
+}
 
 
 @media screen and (max-width: 1199px) {
