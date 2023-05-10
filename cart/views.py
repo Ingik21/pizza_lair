@@ -6,11 +6,10 @@ import json
 from cart.forms.cart_forms import ContactInformationForm
 from cart.forms.payment_form import PaymentForm
 from offer.models import Offer
-<<<<<<< HEAD
+
 from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, ContactInformationForm
-=======
+
 from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer, Payment
->>>>>>> master
 from pizza.models import Pizza
 
 
@@ -134,7 +133,7 @@ def checkout(request):
 
 def payment(request):
     user = request.user.profile
-<<<<<<< HEAD
+
     order, created = Order.objects.get_or_create(user=user, complete=False)
 
 
@@ -143,14 +142,14 @@ def payment(request):
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer}
-=======
+
     order, created = Order.objects.get_or_create(user=user.id, complete=False)
     contact, created = ContactInformation.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact}
->>>>>>> master
+
     return render(request, 'cart/payment.html', context)
 
 
