@@ -1,11 +1,15 @@
 from django.db import models
 
-from offer.models import Offer
 from pizza.models import Pizza
 from user.models import Profile
-
+from offer.models import Offer
 
 # Create your models here.
+
+
+
+
+
 
 
 class Order(models.Model):
@@ -16,6 +20,7 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+
 
     @property
     def get_cart_total(self):
@@ -29,16 +34,11 @@ class Order(models.Model):
         total = sum([item.quantity for item in orderitems])
         return total
 
-
 class OrderItem(models.Model):
     pizza = models.ForeignKey(Pizza, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-
-
-
-
 
     @property
     def get_total(self):
@@ -52,13 +52,22 @@ class OrderItem(models.Model):
 
 
 
-
 class OrderItemOffer(models.Model):
+
     offer = models.ForeignKey(Offer, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def get_total(self):
+        total = self.offer.offer_price * self.quantity
+        return total
+
+    @property
+    def get_items(self):
+        total = self.quantity
+        return total
 
 
 class ContactInformation(models.Model):
@@ -70,6 +79,13 @@ class ContactInformation(models.Model):
     zipcode = models.CharField(max_length=200, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+
+
+class Payment(models.Model):
+    card_number = models.IntegerField()
+    expiration_date = models.DateTimeField()
+    CVC = models.IntegerField()
+
 
 class ShippingAddress(models.Model):
     contact_information = models.ForeignKey(ContactInformation, on_delete=models.SET_NULL, blank=True, null=True)

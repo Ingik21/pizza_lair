@@ -4,6 +4,7 @@ from django.http import JsonResponse
 import json
 
 from cart.forms.cart_forms import ContactInformationForm
+from cart.forms.payment_form import PaymentForm
 from offer.models import Offer
 from cart.models import Order, OrderItem, ContactInformation, ShippingAddress, OrderItemOffer
 from pizza.models import Pizza
@@ -151,4 +152,20 @@ def create_contact(request):
             return redirect('payment')
     else:
         form = ContactInformationForm()
-    return render(request, 'cart/checkout.html', {'form': form, 'order': order})
+    return render(request, 'cart/checkout.html', {'form': form})
+
+
+def create_payment(request):
+    user = request.user.profile
+    order, created = Order.objects.get_or_create(user=user, complete=False)
+
+    if request.method == 'POST':
+        form = PaymentForm(data=request.POST)
+        if form.is_valid():
+            payment_ = form.save()
+            payment_.order_id = order.id
+            payment_.save()
+            return redirect('review')
+    else:
+        form = PaymentForm()
+    return render(request, 'cart/payment.html', {'form': form})
