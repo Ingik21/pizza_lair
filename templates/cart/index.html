@@ -81,10 +81,10 @@
                 <div style="flex:1">
                     <p class="quantity">{{ item.quantity }}</p>
                     <div class="quantity">
-                        <img data-pizza="{{ item.offer.id }}" data-action="add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
-                        <img data-pizza="{{ item.offer.id }}" data-action="remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                        <img data-offer="{{ item.offer.id }}" data-action2="add-offer" class="chg-quantity update-offer" src="{% static 'images/arrow-up.png' %}">
+                        <img data-offer="{{ item.offer.id }}" data-action2="remove-offer" class="chg-quantity update-offer" src="{% static 'images/arrow-down.png' %}">
                     </div>
-                    <button class="delete update-cart" data-pizza="{{ item.offer.id }}" data-action="delete">Delete</button>
+                    <button class="delete update-offer" data-offer="{{ item.offer.id }}" data-action2="delete-offer">Delete</button>
 
                 <br>
                 </div>

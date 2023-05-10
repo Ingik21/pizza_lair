@@ -50,18 +50,18 @@ console.log(updateBtns2)
 for (i = 0; i < updateBtns2.length; i++){
     updateBtns2[i].addEventListener('click', function() {
         var offerId = this.dataset.offer || null
-        var action = this.dataset.action
-        console.log('offerId:', offerId, 'Action:', action)
+        var action2 = this.dataset.action2
+        console.log('offerId:', offerId, 'Action2:', action2)
             console.log('USER', user)
         if (user === 'AnonymousUser'){
             console.log('User is not authenticated')
         }else {
-            updateUserOrderOffer(offerId, action)
+            updateUserOrderOffer(offerId, action2)
         }
     })
 }
 
-function updateUserOrderOffer(offerId, action) {
+function updateUserOrderOffer(offerId, action2) {
     console.log('User is logged in, sending data...')
     var url = '/cart/update_item/'
 
@@ -71,7 +71,7 @@ function updateUserOrderOffer(offerId, action) {
             'Content-Type': 'application/json',
             'X-CSRFToken' : csrftoken
         },
-        body:JSON.stringify({'offerId': offerId, 'action': action})
+        body:JSON.stringify({'offerId': offerId, 'action2': action2})
     })
     .then((response) => {
         return response.json()

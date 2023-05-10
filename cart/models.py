@@ -5,6 +5,9 @@ from pizza.models import Pizza
 from user.models import Profile
 
 
+from django import forms
+
+
 # Create your models here.
 
 
@@ -21,12 +24,16 @@ class Order(models.Model):
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
         total = sum([item.get_total for item in orderitems])
+        orderitemsoffers = self.orderitemoffer_set.all()
+        total += sum([item.get_total for item in orderitemsoffers])
         return total
 
     @property
     def get_cart_items(self):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
+        orderitemsoffers = self.orderitemoffer_set.all()
+        total += sum([item.quantity for item in orderitemsoffers])
         return total
 
 
@@ -60,12 +67,24 @@ class OrderItemOffer(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
 
+    @property
+    def get_total(self):
+        total = self.offer.offer_price * self.quantity
+        return total
+
+    @property
+    def get_items(self):
+        total = self.quantity
+        return total
+
+
+
 
 class ContactInformation(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
-    name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
-    phone_number = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.CharField(max_length=200, null=True, blank=True)
+    phone_number = models.CharField(max_length=200, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 
 class ShippingAddress(models.Model):
@@ -75,3 +94,10 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=200, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+
+
+class ContactInformationForm(forms.ModelForm):
+    class Meta:
+        model = ContactInformation
+        fields = ['name', 'email', 'phone_number']
