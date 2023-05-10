@@ -1,16 +1,12 @@
 from django.db import models
+from django_countries.fields import CountryField
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 
 from pizza.models import Pizza
 from user.models import Profile
 from offer.models import Offer
 
 # Create your models here.
-
-
-
-
-
-
 
 class Order(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
@@ -77,14 +73,16 @@ class ContactInformation(models.Model):
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=200, null=True)
+    country = CountryField()
     date_added = models.DateTimeField(auto_now_add=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 
 
 class Payment(models.Model):
-    card_number = models.CharField(max_length=200)
-    expiration_date = models.CharField(max_length=200)
-    CVC = models.CharField(max_length=200)
+    cardholder_name = models.TextField(max_length=200)
+    card_number = CardNumberField()
+    expiration_date = CardExpiryField()
+    CVC = SecurityCodeField()
 
 
 class ShippingAddress(models.Model):

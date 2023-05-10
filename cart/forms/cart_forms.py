@@ -31,7 +31,6 @@ class ContactInformationForm(ModelForm):
             'order': widgets.HiddenInput(),
             'user': widgets.HiddenInput(),
 
-
         }
 
 
