@@ -48,7 +48,7 @@ document.getElementById("order-by-name").addEventListener("click", function () {
 * set category to none when reset button is pressed in the filter and send a new request to view.py
 * */
 
-document.getElementById("reset").addEventListener("click", function () {
+document.getElementById("reset-filter").addEventListener("click", function () {
     fetch('/?category=none')
         .then(response => response.text())
         .then(data => {
@@ -56,3 +56,5 @@ document.getElementById("reset").addEventListener("click", function () {
         });
 }
 );
+
+
