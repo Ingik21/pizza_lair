@@ -10,11 +10,11 @@
 <h2>Payment Information</h2>
         <hr>
 <ul>
-  <li><strong>Payment Method:</strong> {{ payment_form.payment_method }}</li>
-  <li><strong>Name on Card:</strong> {{ payment_form.name_on_card }}</li>
+  <li><strong>Payment Method:</strong> Credit Card</li>
+  <li><strong>Name on Card:</strong> {{ payment_form.cardholder_name }}</li>
   <li><strong>Card Number:</strong> {{ payment_form.card_number }}</li>
   <li><strong>Expiration Date:</strong> {{ payment_form.expiration_date }}</li>
-  <li><strong>CVC:</strong> {{ payment_form.cvc }}</li>
+  <li><strong>CVC:</strong> {{ payment_form.CVC }}</li>
 </ul>
 </div>
 </div>
@@ -28,11 +28,11 @@
 <ul>
   <li><strong>Name:</strong> {{ contact_form.name }}</li>
   <li><strong>Email:</strong> {{ contact_form.email }}</li>
-  <li><strong>Phone:</strong> {{ contact_form.phone }}</li>
+  <li><strong>Phone:</strong> {{ contact_form.phone_number }}</li>
   <li><strong>Address:</strong> {{ contact_form.address }}</li>
   <li><strong>City:</strong> {{ contact_form.city }}</li>
-  <li><strong>State:</strong> {{ contact_form.state }}</li>
-  <li><strong>Zip Code:</strong> {{ contact_form.zip_code }}</li>
+  <li><strong>Country:</strong> {{ contact_form.country }}</li>
+  <li><strong>Zip Code:</strong> {{ contact_form.zipcode }}</li>
 </ul>
 </div>
 </div>
@@ -41,7 +41,7 @@
 
 <div class="summary">
 <div class="box-element" >
-				<a  class="btn btn-outline-dark" href="{% url 'cart-index' %}">&#x2190; Back to Cart</a>
+				<a  class="btn btn-outline-dark" href="{% url 'create_payment' %}">&#x2190; Back to Payment</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
