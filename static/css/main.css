@@ -203,6 +203,20 @@ a.navbar-brand {
 	padding: 10px;
 }
 
+.payment-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.delivery-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 20px;
+}
+
 .box-element-cart{
     width: 60%;
     justify-content: end;
