@@ -203,3 +203,18 @@ def review(request):
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
                'payment_form': payment_form, 'contact_form': contact_form}
     return render(request, 'cart/review.html', context)
+
+
+def confirm(request):
+    user = request.user.profile
+    order = Order.objects.get(user=user.id, complete=False)
+    order_items = order.orderitem_set.all()
+    order_items_offer = order.orderitemoffer_set.all()
+    payment_form = Payment.objects.filter(order=order).last()
+    contact_form = ContactInformation.objects.filter(order=order).last()
+    order.complete = True
+    order.save()
+
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
+               'payment_form': payment_form, 'contact_form': contact_form}
+    return render(request, 'cart/confirm.html', context)
