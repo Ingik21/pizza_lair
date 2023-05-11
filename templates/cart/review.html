@@ -5,7 +5,10 @@
 <div class="row">
 <div class="cola">
 
+<div class="payment-info">
+    <div class="box-element">
 <h2>Payment Information</h2>
+        <hr>
 <ul>
   <li><strong>Payment Method:</strong> {{ payment_form.payment_method }}</li>
   <li><strong>Name on Card:</strong> {{ payment_form.name_on_card }}</li>
@@ -13,8 +16,15 @@
   <li><strong>Expiration Date:</strong> {{ payment_form.expiration_date }}</li>
   <li><strong>CVC:</strong> {{ payment_form.cvc }}</li>
 </ul>
+</div>
+</div>
 
+
+<br>
+<div class="delivery-info">
+<div class="box-element">
 <h2>Contact Information</h2>
+    <hr>
 <ul>
   <li><strong>Name:</strong> {{ contact_form.name }}</li>
   <li><strong>Email:</strong> {{ contact_form.email }}</li>
@@ -24,6 +34,8 @@
   <li><strong>State:</strong> {{ contact_form.state }}</li>
   <li><strong>Zip Code:</strong> {{ contact_form.zip_code }}</li>
 </ul>
+</div>
+</div>
 
 			<br>
 
