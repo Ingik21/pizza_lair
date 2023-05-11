@@ -99,31 +99,36 @@ def cart(request, url="cart/index.html"):
 
 
 def checkout(request):
+
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user, complete=False)
-    shipping, created = ShippingAddress.objects.get_or_create(order=order)
+    try:
+        contact = ContactInformation.objects.filter(order=order).last()
+    except ContactInformation.DoesNotExist:
+        contact = None
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
     if request.method == 'POST':
+
         form = ContactInformationForm(data=request.POST)
         if form.is_valid():
-            contact_ = form.save()
+            contact_ = form.save(commit=False)
             contact_.order_id = order.id
             contact_.save()
             return redirect('create_payment')
     else:
-        form = ContactInformationForm()
-
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
-               'shipping': shipping, 'form': form}
+        print("else")
+        form = ContactInformationForm(instance=contact)
+        print(contact)
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'form': form}
     return render(request, 'cart/checkout.html', context)
 
 
 def payment(request):
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user.id, complete=False)
-    contact, created = ContactInformation.objects.get_or_create(order=order)
+    contact = ContactInformation.objects.filter(order=order).last()
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
@@ -140,26 +145,37 @@ def redirect_view(request):
 
 
 def create_contact(request):
+
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user, complete=False)
+    contact_ = ContactInformation.objects.filter(order=order.user.id).last()
     order_items = order.orderitem_set.all()
 
     if request.method == 'POST':
-        form = ContactInformationForm(data=request.POST)
+        print(request.POST)
+        form = ContactInformationForm(data=request.POST, instance=contact_)
         if form.is_valid():
-            contact_ = form.save()
+            contact_ = form.save(commit=False)
             contact_.order_id = order.id
             contact_.save()
+            print(contact_)
             return redirect('create_payment')
     else:
-        form = ContactInformationForm()
-    return render(request, 'cart/checkout.html', {'form': form})
+        form = ContactInformationForm(instance=contact_)
+        print(form.initial)
+        return render(request, 'cart/checkout.html', {'form': form})
+
+    return render(request, 'cart/checkout.html', {'form': ContactInformationForm(instance=contact_)})
 
 
 def create_payment(request):
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user.id, complete=False)
-    contact, created = ContactInformation.objects.get_or_create(order=order)
+    contact = ContactInformation.objects.filter(order=order).last()
+    try:
+        payment = Payment.objects.filter(order=order).last()
+    except Payment.DoesNotExist:
+        payment = None
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
@@ -171,7 +187,7 @@ def create_payment(request):
             payment_.save()
             return redirect('review')
     else:
-        form = PaymentForm()
+        form = PaymentForm(instance=payment)
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
                'form': form, 'contact': contact}
     return render(request, 'cart/payment.html', context)
@@ -181,8 +197,8 @@ def review(request):
     order, created = Order.objects.get_or_create(user=user.id, complete=False)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
-    payment_form = Payment.objects.get(order=order)
-    contact_form = ContactInformation.objects.get(order=order)
+    payment_form = Payment.objects.filter(order=order).last()
+    contact_form = ContactInformation.objects.filter(order=order).last()
 
     context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer,
                'payment_form': payment_form, 'contact_form': contact_form}
