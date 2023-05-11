@@ -195,6 +195,11 @@ a.navbar-brand {
     opacity: .6;
 }
 
+body{
+    background-image: url( "../images/slices.jpg" );
+    background-repeat: repeat;
+}
+
 .box-element{
 
 	box-shadow:hsl(0, 0%, 80%) 0 0 32px;
