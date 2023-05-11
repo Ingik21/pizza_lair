@@ -114,7 +114,3 @@ class ShippingAddress(models.Model):
 
 
 
-class ContactInformationForm(forms.ModelForm):
-    class Meta:
-        model = ContactInformation
-        fields = ['name', 'email', 'phone_number']

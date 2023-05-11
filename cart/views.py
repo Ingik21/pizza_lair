@@ -108,26 +108,10 @@ def checkout(request):
     user = request.user.profile
     order, created = Order.objects.get_or_create(user=user, complete=False)
     contact, created = ContactInformation.objects.get_or_create(order=order)
-    shipping, created = ShippingAddress.objects.get_or_create(order=order)
     order_items = order.orderitem_set.all()
     order_items_offer = order.orderitemoffer_set.all()
 
-    contact_information, created = ContactInformation.objects.get_or_create(user=user, order=order)
-
-    print(contact_information)
-    if request.method == 'POST':
-        form = ContactInformationForm(request.POST)
-        # Update the contact information fields with the submitted form data
-        contact_information.name = form.cleaned_data['name']
-        contact_information.email = request.POST.get('email')
-        contact_information.address = request.POST.get('phone')
-        contact_information.save()
-
-        # Redirect the user to the order confirmation page
-        return HttpResponseRedirect('cart/payment/')
-
-
-    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact_information': contact_information}
+    context = {'order_items': order_items, 'order': order, 'order_items_offer': order_items_offer, 'contact': contact}
     return render(request, 'cart/checkout.html', context)
 
 
@@ -135,8 +119,6 @@ def payment(request):
     user = request.user.profile
 
     order, created = Order.objects.get_or_create(user=user, complete=False)
-
-
 
 
     order_items = order.orderitem_set.all()

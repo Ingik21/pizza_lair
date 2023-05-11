@@ -27,6 +27,7 @@ class ContactInformationForm(ModelForm):
             'zipcode': widgets.TextInput(attrs={'class': 'form-control',
                                                 'placeholder': 'Enter your zipcode',
                                                 'aria-label': 'Enter your zipcode',}),
+            'country': widgets.Select(attrs={'class': 'form-control'}),
             'date_added': widgets.HiddenInput(),
             'order': widgets.HiddenInput(),
             'user': widgets.HiddenInput(),
