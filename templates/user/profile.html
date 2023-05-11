@@ -1,14 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Profile</h1>
-    <form class="form form-horizontal" method="post" >
+     <img src="{{ user.profile.image }}" class="Profile Picture" style="width: 100px; height: 100px;
+     border-radius: 50%;
+     margin: 10px;"/>
+
+
+    <button id="show">Edit Profile</button>
+
+    <form class="form form-horizontal" method="post" id="profile_edit" style="display: none">
         {% csrf_token %}
         {{ form }}
         <div>Enter url for image</div>
             <input type="text" name="image" accept="images/*" />
 
         <input type="submit" class="btn btn-primary" value="Update"/>
+    <button id="hide">Cancel</button>
     </form>
+<script>
+let show = document.getElementById('show');
+let hide = document.getElementById('hide');
+show.addEventListener('click', () => {
+  let form = document.getElementById('profile_edit');
+    form.style.display = 'block';
+    form.style.opacity = '1';
+    form.style.transition = 'all 2.5s ease-in-out';
+    form.style.transform = 'translateY(0)';
+    form.style.height = 'auto';
+});
+hide.addEventListener('click', () => {
+  let form = document.getElementById('profile_edit');
+    form.style.display = 'none';
+    form.style.opacity = '0';
+    form.style.transition = 'all 2.5s ease-in-out';
+    form.style.transform = 'translateY(-100%)';
+    form.style.height = '0';
+}
+);
+
+
+</script>
 {% endblock %}
 
 
