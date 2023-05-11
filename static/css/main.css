@@ -15,6 +15,10 @@
     margin-bottom: 60px;
 }
 
+.table {
+    color: white;
+}
+
 .banner{
     background: image("static/images/Pizza Lair.jpg");
     width: 100%;
@@ -67,6 +71,7 @@ a.navbar-brand {
     display: flex;
     flex-wrap: wrap;
 }
+
 
 .offers{
     display: flex;
@@ -227,7 +232,15 @@ a.navbar-brand {
 	padding: 10px;
 }
 
+.homepage-image {
+    background-image: url("../images/salami_pizza-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
 
+}
 
 #form-wrapper{
     width: 50%;
