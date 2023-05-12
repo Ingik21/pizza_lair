@@ -18,3 +18,4 @@ This is a simple pizza ordering app. It allows you to select pizzas and/or offer
 
 * Run
 * Enjoy!
+* Link to GitHub repo: https://github.com/Ingik21/pizza_lair
